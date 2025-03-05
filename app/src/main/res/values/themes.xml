@@ -6,4 +6,11 @@
     </style>
 
     <style name="Theme.MemoraApp" parent="Base.Theme.MemoraApp" />
+
+    <style name="Theme.Memora" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/celeste_boton</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
+    </style>
+
 </resources>

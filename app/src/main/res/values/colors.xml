@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+        <color name="fondo_app">#E8F8F5</color> <!-- Celeste claro -->
+        <color name="naranja_principal">#FFA500</color> <!-- Naranja botones -->
+        <color name="celeste_boton">#CBF3F0</color> <!-- Celeste botón -->
+        <color name="rojo_guardar">#FF6961</color> <!-- Rojo botón guardar -->
+        <color name="blanco">#FFFFFF</color> <!-- Blanco general -->
+        <color name="negro">#000000</color> <!-- Texto negro -->
+
+
 </resources>

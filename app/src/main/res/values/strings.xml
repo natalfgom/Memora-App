@@ -1,3 +1,55 @@
 <resources>
-    <string name="app_name">Memora-App</string>
+    <string name="app_name">Memora</string>
+
+
+    <string name="bienvenido">MEMORA</string>
+    <string name="hint_email">Correo electrónico</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="btn_login">Iniciar sesión</string>
+    <string name="btn_register">Registro</string>
+
+
+    <string name="error_campos_vacios">Rellena todos los campos</string>
+    <string name="error_login">Error al iniciar sesión: %1$s</string>
+
+    <string name="recuerdos">RECUERDOS</string>
+    <string name="desc_recuerdos">Botón de recuerdos</string>
+
+    <string name="recuerdos_añadir">AÑADIR RECUERDOS</string>
+
+    <string name="juegos">JUEGOS</string>
+    <string name="desc_juegos">Botón de juegos</string>
+
+    <string name="estadisticas">ESTADÍSTICAS</string>
+    <string name="desc_estadisticas">Botón de estadísticas</string>
+
+    <string name="habitos_memoria">HÁBITOS Y MEMORIA</string>
+    <string name="desc_habitos">Botón de hábitos y memoria</string>
+
+    <string name="pruebas">PRUEBAS</string>
+
+
+    <string name="menu_back">Atrás</string>
+    <string name="menu_principal">Inicio</string>
+    <string name="informacion_personal">Perfil</string>
+    <string name="sobre_nosotros">Sobre Nosotros</string>
+
+
+    <string name="registro">Registro</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="dni">DNI</string>
+    <string name="telefono">Teléfono</string>
+    <string name="correo">Correo electrónico</string>
+    <string name="repetir_correo">Repetir correo electrónico</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="repetir_contrasena">Repetir contraseña</string>
+    <string name="fecha_nacimiento">Fecha de nacimiento</string>
+    <string name="id_medico">ID identificativo médico</string>
+    <string name="id_vincular_medico">ID del médico para vincular</string>
+    <string name="dni_vincular_paciente">DNI del paciente para vincular</string>
+    <string name="guardar">Guardar</string>
+    <string name="pin">Pin</string>
+
+
 </resources>

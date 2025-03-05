@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blanco">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/celeste_boton"
+        android:paddingTop="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/toolbar"
+        app:title="@string/app_name"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"/>
+
+
+
+    <LinearLayout
+        android:id="@+id/recuerdos"
+        android:layout_width="358dp"
+        android:layout_height="156dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="26dp"
+        android:background="@drawable/bordered_edittext_celeste"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/desc_recuerdos"
+            android:src="@drawable/album_fotos" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recuerdos"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/estadisticas"
+        android:layout_width="175dp"
+        android:layout_height="156dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="26dp"
+        android:background="@drawable/bordered_edittext_celeste"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/juegos"
+        app:layout_constraintTop_toBottomOf="@id/recuerdos">
+
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="91dp"
+            android:contentDescription="@string/desc_estadisticas"
+            android:src="@drawable/beneficios" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/estadisticas"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="358dp"
+        android:layout_height="156dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/bordered_edittext_celeste"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/juegos">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/desc_habitos"
+            android:src="@drawable/idea" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/habitos_memoria"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/juegos"
+        android:layout_width="175dp"
+        android:layout_height="156dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/bordered_edittext_celeste"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/estadisticas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recuerdos">
+
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="91dp"
+            android:contentDescription="@string/desc_juegos"
+            android:src="@drawable/rompecabezas" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/juegos"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Hábitos y memoria -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
