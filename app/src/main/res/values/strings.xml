@@ -51,5 +51,215 @@
     <string name="guardar">Guardar</string>
     <string name="pin">Pin</string>
 
+    <string-array name="roles_array">
+        <item>Selecciona tu rol</item>
+        <item>Médico</item>
+        <item>Paciente</item>
+        <item>Cuidador</item>
+    </string-array>
+
+
+
+
+        <string name="hint_nombre">Nombre</string>
+        <string name="hint_apellidos">Apellidos</string>
+        <string name="hint_correo">Correo electrónico</string>
+        <string name="hint_telefono">Teléfono</string>
+        <string name="hint_nuevo_pin">Nuevo PIN</string>
+        <string name="hint_password_actual">Confirmar cambios</string>
+        <string name="hint_nueva_password">Nueva contraseña</string>
+        <string name="btn_guardar">Guardar cambios</string>
+
+        <string name="error_correo_existente">Este correo ya está en uso</string>
+        <string name="error_telefono_existente">Este teléfono ya está en uso</string>
+        <string name="error_password_actual_incorrecta">Contraseña actual incorrecta</string>
+        <string name="datos_actualizados_exito">Datos actualizados correctamente</string>
+        <string name="error_actualizar_datos">Error al actualizar los datos</string>
+
+        <string name="Titulo_habitos">Como afectan ciertos hábitos a la memoria</string>
+        <string name="tabaco_titulo">Efecto del tabaco</string>
+        <string name="alcohol">Efecto del Alcohol</string>
+        <string name="comida_titulo">Efecto de la mala alimentación</string>
+        <string name="descripcion_t">Los fumadores presentan un deterioro en la memoria prospectiva, es decir, la capacidad de recordar realizar acciones en el futuro. A través de autoinformes y pruebas objetivas, los investigadores concluyen que el consumo habitual de tabaco afecta funciones cerebrales clave para la planificación y la gestión de tareas cotidianas. Para aprender más sobre el tema haga clik en el enlace: https://acortar.link/wbHaOE</string>
+        <string name="descripcion_a">El consumo excesivo y prolongado de alcohol impacta la memoria y la función ejecutiva. Descubrieron que las personas con historial de alcoholismo muestran déficits en la memoria episódica y de trabajo, lo que limita su capacidad para aprender nuevas habilidades y retener información a largo plazo. Para aprender más sobre el tema haga clik en el siguiente enlace: https://pubmed.ncbi.nlm.nih.gov/17250615/.</string>
+        <string name="descripcion_c">Las dietas ricas en grasas saturadas y azúcares con disfunciones en el hipocampo, la región del cerebro responsable de la memoria y el aprendizaje. Se encontró que el consumo excesivo de comida basura no solo contribuye a la obesidad, sino que también afecta negativamente la capacidad de recordar y procesar información. Para aprender más sobre el tema haga clik en el siguiente enlace: https://acortar.link/6aEeku</string>
+
+    <!-- Textos de la pantalla de subida -->
+    <string name="title_upload">AÑADE RECUERDOS</string>
+    <string name="subtitle_upload">AÑADE UNA FOTO</string>
+    <string name="select_image">Seleccionar imagen</string>
+    <string name="write_text">Describe el recuerdo:</string>
+    <string name="edit_text_hint">Escribe aquí...</string>
+    <string name="upload_button">SUBIR</string>
+    <string name="image_desc">Imagen seleccionada</string>
+
+    <string name="recuerdo_imagen">Imagen del recuerdo</string>
+    <string name="recuerdo_descripcion">Descripción del recuerdo</string>
+    <string name="recuerdo_fecha">Fecha del recuerdo</string>
+    <string name="error_paciente_no_encontrado">No se encontró al paciente</string>
+    <string name="error_cargar_paciente">Error al obtener datos del paciente</string>
+    <string name="error_sin_recuerdos">No hay recuerdos disponibles</string>
+    <string name="error_cargar_recuerdos">Error al cargar recuerdos</string>
+    <string name="marco_recuerdo">marco</string>
+
+
+        <!-- MMSE Test -->
+        <string name="mmse_title">Prueba inicial</string>
+        <string name="question_country">¿En qué país se encuentra?</string>
+        <string-array name="answers_country">
+            <item>Seleccione un país</item>
+            <item>España</item>
+            <item>Francia</item>
+            <item>Alemania</item>
+            <item>Italia</item>
+        </string-array>
+
+        <string name="question_date">Selecciona la fecha actual:</string>
+        <string-array name="answers_date">
+            <item>17 de marzo de 2025</item>
+            <item>20 de abril de 2024</item>
+            <item>5 de enero de 2023</item>
+            <item>10 de junio de 2022</item>
+        </string-array>
+
+        <string name="question_memory">Recuerda estas imágenes:</string>
+        <string name="question_calculation">Resta 7 desde 100:</string>
+        <string-array name="answers_calculation">
+            <item>Seleccione la opción correcta</item>
+            <item>93, 80, 76, 73, 60</item>
+            <item>93, 86, 79, 72, 65</item>
+            <item>90, 83, 76, 69, 62</item>
+            <item>95, 88, 81, 74, 67</item>
+        </string-array>
+
+        <string name="question_comprehension">Selecciona la imagen correspondiente:</string>
+        <string name="btn_submit">Enviar Respuestas</string>
+
+        <!-- CDR Test -->
+        <string name="cdr_title">Test CDR</string>
+        <string name="question_memory_cdr">¿El paciente tiene problemas con la memoria?</string>
+        <string-array name="answers_memory_cdr">
+            <item>No</item>
+            <item>Sí</item>
+        </string-array>
+
+        <string name="question_recent_events">¿Puede recordar eventos recientes?</string>
+        <string-array name="answers_recent_events">
+            <item>Generalmente</item>
+            <item>A veces</item>
+            <item>Rara vez</item>
+        </string-array>
+
+        <string name="question_important_events">¿Se olvida completamente de eventos importantes?</string>
+        <string-array name="answers_important_events">
+            <item>Generalmente</item>
+            <item>A veces</item>
+            <item>Rara vez</item>
+        </string-array>
+
+        <string name="question_past_details">¿Olvida detalles de eventos pasados?</string>
+        <string-array name="answers_past_details">
+            <item>Generalmente</item>
+            <item>A veces</item>
+            <item>Rara vez</item>
+        </string-array>
+
+        <string name="question_orientation_cdr">¿Sabe exactamente la fecha del día?</string>
+        <string-array name="answers_orientation_cdr">
+            <item>Generalmente</item>
+            <item>A veces</item>
+            <item>Rara vez</item>
+            <item>No sé</item>
+        </string-array>
+
+        <string name="question_judgment_cdr">¿Cómo considera su capacidad actual para resolver problemas?</string>
+        <string-array name="answers_judgment_cdr">
+            <item>Tan buena como antes</item>
+            <item>Buena, pero no como antes</item>
+            <item>Regular</item>
+            <item>Deficiente</item>
+            <item>No tiene capacidad</item>
+        </string-array>
+
+        <string name="question_activities_cdr">¿Puede realizar actividades fuera del hogar?</string>
+        <string-array name="answers_activities_cdr">
+            <item>Sí</item>
+            <item>A veces</item>
+            <item>No</item>
+        </string-array>
+
+        <string name="question_care_cdr">¿Puede vestirse solo correctamente?</string>
+        <string-array name="answers_care_cdr">
+            <item>Sin problemas</item>
+            <item>A veces necesita ayuda</item>
+            <item>Siempre necesita ayuda</item>
+        </string-array>
+
+        <!-- Resultados -->
+        <string name="result_mmse">Resultado MMSE</string>
+        <string name="result_cdr">Resultado CDR-SB</string>
+        <string name="classification">Clasificación:</string>
+        <string name="cognitive_normal">Función Cognitiva Normal</string>
+        <string name="cognitive_mild">Deterioro Cognitivo Leve</string>
+        <string name="cognitive_moderate">Deterioro Cognitivo Moderado</string>
+        <string name="cognitive_severe">Deterioro Cognitivo Severo</string>
+    <string name="btn_memory">Ir a la prueba de memoria</string>
+
+    <string name="explicacion_memoria_titulo">Explicación de la Prueba de Memoria</string>
+    <string name="explicacion_memoria_texto">
+
+        1- Se mostrarán 3 imágenes una a una durante 3 segundos cada una.\n\n
+        2- Luego, verás las 8 imágenes juntas y tendrás que seleccionar las 3 que viste antes.\n\n
+        3- Selecciona con atención, no puedes cambiar tu respuesta después de validar.\n\n
+        ¡Presiona "Comenzar" para iniciar la prueba!
+    </string>
+
+    <string name="btn_comenzar">Comenzar</string>
+
+    <string name="explicacion_comprension_titulo">Explicación de la Prueba de Comprensión</string>
+    <string name="explicacion_comprension_texto">
+
+        1- Aparecerá un nombre en la parte superior de la pantalla.\n\n
+        2- Debes seleccionar la imagen correcta que corresponde a ese nombre.\n\n
+        3- Este proceso se repetirá 4 veces con diferentes imágenes y nombres.\n\n
+        4- Selecciona con atención, no puedes cambiar tu respuesta después de validar.\n\n
+        ¡Presiona "Comenzar" para iniciar la prueba!
+    </string>
+
+    <string name="resultados_mmse_titulo">Resultados de la Prueba MMSE</string>
+
+    <string name="clasificacion_mmse">Clasificación: %1$s</string>
+    <string name="btn_volver_inicio">Volver al Inicio</string>
+    <string name="resultados_guardados">Resultados guardados en Firebase</string>
+    <string name="error_guardar_resultados">Error al guardar resultados</string>
+    <string name="prueba_de_orientaci_n_y_c_lculo">Prueba de orientación y cálculo</string>
+
+
+
+    <!-- Puntuación total y clasificación final -->
+
+
+    <!-- Botón para volver al inicio -->
+
+
+    <!-- Clasificaciones generales -->
+    <string name="clasificacion_normal">Función Cognitiva Normal</string>
+    <string name="clasificacion_leve">Deterioro Cognitivo Leve</string>
+    <string name="clasificacion_moderado">Deterioro Cognitivo Moderado</string>
+
+
+    <!-- Dificultades por área cognitiva -->
+    <string name="dificultad_alta">Dificultad Alta (Normal)</string>
+    <string name="dificultad_media">Dificultad Media (Leve Deterioro)</string>
+    <string name="dificultad_baja">Dificultad Baja (Deterioro Severo)</string>
+
+    <string name="puntaje_orientacion">Orientación: %1$d puntos - %2$s</string>
+    <string name="puntaje_memoria">Memoria: %1$d puntos - %2$s</string>
+    <string name="puntaje_calculo">Cálculo: %1$d puntos - %2$s</string>
+    <string name="puntaje_comprension">Comprensión: %1$d puntos - %2$s</string>
+    <string name="puntaje_total">Puntuación Total: %1$d - Clasificación: %2$s</string>
+    <string name="debes_seleccionar_imagenes">Debes seleccionar las imágenes</string>
+    <string name="seleccione_imagenes">Selecione las imágenes</string>
+
 
 </resources>

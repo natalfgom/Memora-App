@@ -1,26 +1,74 @@
 package com.example.memora_app
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.memora_app.pruebas.MMSEActivity
+import com.example.memora_app.recuerdos.VerRecuerdos
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class inicio_paciente_activity : AppCompatActivity() {
+
+    private val db = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.inicio_paciente)
 
-        // Configurar Toolbar
+        Log.d("InicioPaciente", "Actividad iniciada")
+
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        // Opcional: Mostrar botón de volver atrás (si lo necesitas)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+
+
+
+        val btnRecuerdos = findViewById<LinearLayout>(R.id.recuerdos)
+        val btnEstadisticas = findViewById<LinearLayout>(R.id.estadisticas)
+        val btnJuegos = findViewById<LinearLayout>(R.id.juegos)
+        val btnHabitos = findViewById<LinearLayout>(R.id.habitos)
+        val btnPruebas = findViewById<LinearLayout>(R.id.pruebas)
+
+        btnRecuerdos.setOnClickListener {
+            startActivity(Intent(this, VerRecuerdos::class.java))
+        }
+
+        btnEstadisticas.setOnClickListener {
+            Toast.makeText(this, "Estadísticas seleccionadas", Toast.LENGTH_SHORT).show()
+        }
+
+        btnJuegos.setOnClickListener {
+            Toast.makeText(this, "Juegos seleccionados", Toast.LENGTH_SHORT).show()
+        }
+
+        btnHabitos.setOnClickListener {
+            startActivity(Intent(this, Habitos_Activity::class.java))
+        }
+
+        btnPruebas.setOnClickListener {
+            try {
+                Log.d("InicioPaciente", "Botón de Pruebas presionado")
+                val intent = Intent(this, MMSEActivity::class.java)
+                startActivity(intent)
+            } catch (e: Exception) {
+                Log.e("InicioPaciente", "Error al iniciar MMSEActivity: ${e.message}")
+                Toast.makeText(this, "Error al abrir la prueba", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar, menu)
@@ -30,19 +78,35 @@ class inicio_paciente_activity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                // Acción al pulsar la flecha de atrás
                 onBackPressedDispatcher.onBackPressed()
                 true
             }
             R.id.menu_principal -> {
-                Toast.makeText(this, "Inicio", Toast.LENGTH_SHORT).show()
+                irAInicioSegunRol()
                 true
             }
             R.id.menu_informacion_personal -> {
-                Toast.makeText(this, "Información personal", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, InformacionpersonalActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun irAInicioSegunRol() {
+        val sharedPreferences = getSharedPreferences("PREFS_MEMORA", MODE_PRIVATE)
+        val rol = sharedPreferences.getString("rol", "")
+
+        val intent = when (rol) {
+            "Médico" -> Intent(this, inicio_medico_activity::class.java)
+            "Paciente" -> Intent(this, inicio_paciente_activity::class.java)
+            "Cuidador" -> Intent(this, inicio_cuidador_activity::class.java)
+            else -> {
+                Toast.makeText(this, "Rol desconocido", Toast.LENGTH_SHORT).show()
+                return
+            }
+        }
+
+        startActivity(intent)
     }
 }

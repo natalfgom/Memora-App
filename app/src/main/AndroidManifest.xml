@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"/>
+
 
     <application
         android:allowBackup="true"
@@ -25,6 +27,54 @@
         <activity
             android:name=".RegistroActivity"
             android:exported="true" />
+        <activity
+            android:name=".inicio_medico_activity"
+            android:exported="true" />
+        <activity
+            android:name=".inicio_cuidador_activity"
+            android:exported="true" />
+        <activity
+            android:name=".inicio_paciente_activity"
+            android:exported="true" />
+        <activity
+            android:name=".InformacionpersonalActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".Habitos_Activity"
+            android:exported="true" />
+
+        <activity
+            android:name=".recuerdos.subida"
+            android:exported="true" />
+
+        <activity
+            android:name=".recuerdos.VerRecuerdos"
+            android:exported="true" />
+
+        <activity
+            android:name=".pruebas.ResultadosMMSEActivity"
+            android:exported="true" />
+        <activity
+            android:name=".pruebas.ComprensionActivity"
+            android:exported="true" />
+        <activity
+            android:name=".pruebas.ExplicacionComprensionActivity"
+            android:exported="true" />
+        <activity
+            android:name=".pruebas.ExplicacionMemoriaActivity"
+            android:exported="true" />
+        <activity
+            android:name=".pruebas.MemoriaActivity"
+            android:exported="true" />
+        <activity
+            android:name=".pruebas.MMSEActivity"
+            android:exported="true" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
 
     </application>
 

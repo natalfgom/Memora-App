@@ -1,20 +1,22 @@
 package com.example.memora_app
 
 import android.content.Intent
+import android.graphics.text.LineBreaker
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.example.memora_app.recuerdos.subida
+import android.text.Layout
 
-class inicio_cuidador_activity : AppCompatActivity() {
+class Habitos_Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.inicio_cuidador)
+        setContentView(R.layout.habitos)
 
         // Configurar Toolbar
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
@@ -24,32 +26,20 @@ class inicio_cuidador_activity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        val btnRecuerdos = findViewById<LinearLayout>(R.id.recuerdos)
-        val btnEstadisticas = findViewById<LinearLayout>(R.id.estadisticas)
-        val btnPruebas = findViewById<LinearLayout>(R.id.pruebas)
-        val btnHabitos = findViewById<LinearLayout>(R.id.habitos)
-
-
-        btnRecuerdos.setOnClickListener {
-            startActivity(Intent(this, subida::class.java))
-            true
-        }
-
-        btnEstadisticas.setOnClickListener {
-            Toast.makeText(this, "Estadísticas seleccionadas", Toast.LENGTH_SHORT).show()
-        }
-
-        btnPruebas.setOnClickListener {
-            Toast.makeText(this, "Juegos seleccionados", Toast.LENGTH_SHORT).show()
-        }
-
-        btnHabitos.setOnClickListener {
-            startActivity(Intent(this, Habitos_Activity::class.java))
-            true
-        }
+        // Justificar textos si la versión lo permite
+        justificarTexto(R.id.textView)
+        justificarTexto(R.id.textView4)
+        justificarTexto(R.id.textView7)
     }
 
-
+    private fun justificarTexto(textViewId: Int) {
+        val textView = findViewById<TextView>(textViewId)
+        if (textView != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                textView.justificationMode = LineBreaker.JUSTIFICATION_MODE_INTER_WORD
+            }
+        }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar, menu)
@@ -90,7 +80,4 @@ class inicio_cuidador_activity : AppCompatActivity() {
 
         startActivity(intent)
     }
-
-
-
 }

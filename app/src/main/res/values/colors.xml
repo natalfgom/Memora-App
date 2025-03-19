@@ -9,6 +9,7 @@
         <color name="rojo_guardar">#FF6961</color> <!-- Rojo botón guardar -->
         <color name="blanco">#FFFFFF</color> <!-- Blanco general -->
         <color name="negro">#000000</color> <!-- Texto negro -->
+    <color name="cuadro">#E9BA75</color>
 
 
 </resources>

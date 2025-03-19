@@ -1,5 +1,6 @@
 package com.example.memora_app
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -30,19 +31,36 @@ class inicio_medico_activity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                // Acción al pulsar la flecha de atrás
                 onBackPressedDispatcher.onBackPressed()
                 true
             }
             R.id.menu_principal -> {
-                Toast.makeText(this, "Inicio", Toast.LENGTH_SHORT).show()
+                irAInicioSegunRol()
                 true
             }
             R.id.menu_informacion_personal -> {
-                Toast.makeText(this, "Información personal", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, InformacionpersonalActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    private fun irAInicioSegunRol() {
+        val sharedPreferences = getSharedPreferences("PREFS_MEMORA", MODE_PRIVATE)
+        val rol = sharedPreferences.getString("rol", "")
+
+        val intent = when (rol) {
+            "Médico" -> Intent(this, inicio_medico_activity::class.java)
+            "Paciente" -> Intent(this, inicio_paciente_activity::class.java)
+            "Cuidador" -> Intent(this, inicio_cuidador_activity::class.java)
+            else -> {
+                Toast.makeText(this, "Rol desconocido", Toast.LENGTH_SHORT).show()
+                return
+            }
+        }
+
+        startActivity(intent)
+    }
+
 }
