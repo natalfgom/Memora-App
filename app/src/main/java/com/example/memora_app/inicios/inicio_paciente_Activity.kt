@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.memora_app.configuracionmedico.vertest
 import com.example.memora_app.pruebas.MMSEActivity
 import com.example.memora_app.recuerdos.VerRecuerdos
 import com.google.firebase.auth.FirebaseAuth
@@ -56,14 +57,7 @@ class inicio_paciente_activity : AppCompatActivity() {
         }
 
         btnPruebas.setOnClickListener {
-            try {
-                Log.d("InicioPaciente", "Botón de Pruebas presionado")
-                val intent = Intent(this, MMSEActivity::class.java)
-                startActivity(intent)
-            } catch (e: Exception) {
-                Log.e("InicioPaciente", "Error al iniciar MMSEActivity: ${e.message}")
-                Toast.makeText(this, "Error al abrir la prueba", Toast.LENGTH_SHORT).show()
-            }
+            startActivity(Intent(this, vertest::class.java))
         }
 
     }

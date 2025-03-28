@@ -71,6 +71,43 @@
             android:name=".pruebas.MMSEActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".pruebas.mmseRegistro"
+            android:exported="true" />
+        <activity
+            android:name=".pruebas.ResultadosMMSERgActivity"
+            android:exported="true" />
+        <activity
+            android:name=".pruebas.ComprensionRgActivity"
+            android:exported="true" />
+        <activity
+            android:name=".pruebas.ExplicacionComprensionRgActivity"
+            android:exported="true" />
+        <activity
+            android:name=".pruebas.ExplicacionMemoriaRgActivity"
+            android:exported="true" />
+        <activity
+            android:name=".pruebas.MemoriaRgActivity"
+            android:exported="true" />
+        <activity
+            android:name=".configuracionmedico.DetallePruebaActivity"
+            android:exported="true" />
+        <activity
+            android:name=".configuracionmedico.vertest"
+            android:exported="true" />
+        <activity
+            android:name=".configuracionmedico.ListaPacientesActivity"
+            android:exported="true" />
+        <activity
+            android:name=".pruebas.CDRSBActivity"
+            android:exported="true" />
+        <activity
+            android:name=".pruebas.ResultadosCDRActivity"
+            android:exported="true" />
+
+
+
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

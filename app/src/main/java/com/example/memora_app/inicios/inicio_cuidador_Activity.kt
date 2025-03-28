@@ -8,6 +8,8 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.memora_app.configuracionmedico.vertest
+import com.example.memora_app.pruebas.CDRSBActivity
 import com.example.memora_app.recuerdos.subida
 
 class inicio_cuidador_activity : AppCompatActivity() {
@@ -40,7 +42,8 @@ class inicio_cuidador_activity : AppCompatActivity() {
         }
 
         btnPruebas.setOnClickListener {
-            Toast.makeText(this, "Juegos seleccionados", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, CDRSBActivity::class.java))
+            true
         }
 
         btnHabitos.setOnClickListener {

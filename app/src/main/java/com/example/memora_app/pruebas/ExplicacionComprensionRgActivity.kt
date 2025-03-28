@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.memora_app.R
 
-class ExplicacionComprensionActivity : AppCompatActivity() {
+class ExplicacionComprensionRgActivity : AppCompatActivity() {
     private lateinit var btnComenzar: Button
     private lateinit var tvExplicacion: TextView
 
@@ -29,7 +29,7 @@ class ExplicacionComprensionActivity : AppCompatActivity() {
         }
 
         btnComenzar.setOnClickListener {
-            val intent = Intent(this, ComprensionActivity::class.java)
+            val intent = Intent(this, ComprensionRgActivity::class.java)
             intent.putExtra("paciente_id", pacienteID) // Pasar el ID a la siguiente actividad
             startActivity(intent)
             finish()

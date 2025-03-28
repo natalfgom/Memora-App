@@ -15,7 +15,7 @@ import com.google.firebase.firestore.SetOptions
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MemoriaActivity : AppCompatActivity() {
+class MemoriaRgActivity : AppCompatActivity() {
     private lateinit var imageView: ImageView
     private lateinit var gridLayout: GridLayout
     private lateinit var btnValidar: Button
@@ -143,7 +143,7 @@ class MemoriaActivity : AppCompatActivity() {
 
         guardarResultadosEnFirebase(aciertos)
 
-        val intent = Intent(this, ExplicacionComprensionActivity::class.java)
+        val intent = Intent(this, ExplicacionComprensionRgActivity::class.java)
         intent.putExtra("paciente_id", pacienteID)
         startActivity(intent)
         finish()
@@ -166,7 +166,7 @@ class MemoriaActivity : AppCompatActivity() {
         )
 
         db.collection("Pacientes").document(pacienteID)
-            .collection("Pruebas").document(fechaActual) // Guardar los resultados con la fecha actual
+            .collection("Pruebas").document("Prueba inicial " + fechaActual) // Guardar los resultados con la fecha actual
             .set(resultado, SetOptions.merge()) // Evita sobrescribir otros datos previos
             .addOnSuccessListener {
                 Log.d("Firebase", "Resultado de memoria guardado con éxito en Firebase para la fecha $fechaActual")

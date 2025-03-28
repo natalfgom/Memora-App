@@ -15,11 +15,12 @@ import com.google.firebase.firestore.SetOptions
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ComprensionActivity : AppCompatActivity() {
+class ComprensionRgActivity : AppCompatActivity() {
     private lateinit var tvPalabra: TextView
     private lateinit var gridLayout: GridLayout
     private lateinit var btnSiguiente: Button
     private lateinit var contenedorGrid: FrameLayout
+
 
     private val imagenes = listOf(
         Pair("Lavadora", R.drawable.lavadora),
@@ -49,6 +50,7 @@ class ComprensionActivity : AppCompatActivity() {
         btnSiguiente = findViewById(R.id.btnSiguiente)
         contenedorGrid = findViewById(R.id.contenedorGrid)
 
+
         // Recibir el ID del paciente
         pacienteID = intent.getStringExtra("paciente_id") ?: ""
 
@@ -56,7 +58,6 @@ class ComprensionActivity : AppCompatActivity() {
             Toast.makeText(this, "Error: ID del paciente no encontrado", Toast.LENGTH_LONG).show()
             Log.e("ComprensionActivity", "Paciente ID no encontrado")
             finish()
-            return
         }
 
         btnSiguiente.setOnClickListener {
@@ -96,13 +97,20 @@ class ComprensionActivity : AppCompatActivity() {
         gridLayout.removeAllViews()
         gridLayout.visibility = View.VISIBLE
         gridLayout.columnCount = 2
+        gridLayout.removeAllViews()
+        gridLayout.columnCount = 2  // Mantener distribución en 3 columnas
 
-        contenedorGrid.visibility = View.VISIBLE
+        contenedorGrid.visibility = View.VISIBLE // También si el FrameLayout lo contiene
 
-        val opciones = imagenes.shuffled() // Se muestran todas las imágenes en cada intento
+
+        val opciones = imagenes.shuffled() // Se muestran **todas** las imágenes en cada intento
+
+        Log.d("ComprensionActivity", "Mostrando opciones de imágenes en gridLayout...")
 
         Handler(Looper.getMainLooper()).postDelayed({
             opciones.forEach { opcion ->
+                Log.d("ComprensionActivity", "Agregando imagen: ${opcion.first}")
+
                 val imageView = ImageView(this).apply {
                     setImageResource(opcion.second)
                     layoutParams = GridLayout.LayoutParams().apply {
@@ -135,21 +143,22 @@ class ComprensionActivity : AppCompatActivity() {
     }
 
     private fun finalizarPrueba() {
-        guardarResultadosEnFirebase {
-            val intent = Intent(this, ResultadosMMSEActivity::class.java)
-            intent.putExtra("comprension_resultado", correctos)
-            intent.putExtra("paciente_id", pacienteID)
-            startActivity(intent)
-            finish()
-        }
+        guardarResultadosEnFirebase()
+
+        val intent = Intent(this, ResultadosMMSERgActivity::class.java)
+        intent.putExtra("comprension_resultado", correctos)
+        intent.putExtra("paciente_id", pacienteID)
+        startActivity(intent)
+        finish()
     }
 
-    private fun guardarResultadosEnFirebase(onSuccess: () -> Unit) {
+    private fun guardarResultadosEnFirebase() {
         if (pacienteID.isEmpty()) {
             Log.e("Firebase", "No se puede guardar en Firebase: ID de paciente vacío.")
             return
         }
 
+        // Obtener la fecha actual en formato "yyyy-MM-dd"
         val fechaActual = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
 
         val resultado = hashMapOf(
@@ -160,22 +169,22 @@ class ComprensionActivity : AppCompatActivity() {
         )
 
         db.collection("Pacientes").document(pacienteID)
-            .collection("Pruebas").document(fechaActual)
-            .set(resultado, SetOptions.merge())
+            .collection("Pruebas").document("Prueba inicial "+fechaActual) // Guarda los resultados con la fecha actual
+            .set(resultado, SetOptions.merge()) // Evita sobrescribir otros datos previos
             .addOnSuccessListener {
                 Log.d("Firebase", "Resultado de comprensión guardado con éxito en Firebase para la fecha $fechaActual")
-                onSuccess() // Llamar a la función cuando el guardado sea exitoso
             }
             .addOnFailureListener { e ->
                 Log.e("Firebase", "Error al guardar resultado de comprensión en Firebase", e)
             }
     }
 
+    // Función para clasificar la dificultad según el puntaje obtenido
     private fun clasificarDificultad(puntaje: Int): String {
         return when {
-            puntaje >= 4 -> "Dificultad Alta"
-            puntaje in 2..3 -> "Dificultad Media"
-            else -> "Dificultad Baja"
+            puntaje >= 4 -> "Dificultad Alta"  // 5 o 4
+            puntaje in 2..3 -> "Dificultad Media"  // 2 o 3
+            else -> "Dificultad Baja"  // 1 o 0
         }
     }
 }

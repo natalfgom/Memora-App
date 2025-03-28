@@ -10,6 +10,8 @@
         <color name="blanco">#FFFFFF</color> <!-- Blanco general -->
         <color name="negro">#000000</color> <!-- Texto negro -->
     <color name="cuadro">#E9BA75</color>
+    <color name="gray">#808080</color> <!-- Color gris estándar -->
+
 
 
 </resources>

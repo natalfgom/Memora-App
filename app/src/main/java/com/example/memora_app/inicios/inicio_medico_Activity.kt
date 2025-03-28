@@ -2,11 +2,16 @@ package com.example.memora_app
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.memora_app.configuracionmedico.ListaPacientesActivity
+import com.example.memora_app.pruebas.MMSEActivity
+import com.example.memora_app.recuerdos.VerRecuerdos
 
 class inicio_medico_activity : AppCompatActivity() {
 
@@ -21,6 +26,27 @@ class inicio_medico_activity : AppCompatActivity() {
         // Opcional: Mostrar botón de volver atrás (si lo necesitas)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+
+
+
+        val btnEstadisticas = findViewById<LinearLayout>(R.id.estadisticas)
+        val btnPruebas = findViewById<LinearLayout>(R.id.pruebas)
+
+
+
+        btnEstadisticas.setOnClickListener {
+            Toast.makeText(this, "Estadísticas seleccionadas", Toast.LENGTH_SHORT).show()
+        }
+
+
+
+        btnPruebas.setOnClickListener {
+
+
+                val intent = Intent(this, ListaPacientesActivity::class.java)
+                startActivity(intent)
+
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

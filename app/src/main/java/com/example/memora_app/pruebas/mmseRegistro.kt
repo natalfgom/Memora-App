@@ -13,7 +13,7 @@ import com.google.firebase.firestore.SetOptions
 
 import java.util.*
 
-class MMSEActivity : AppCompatActivity() {
+class mmseRegistro : AppCompatActivity() {
     private lateinit var spnCountry: Spinner
     private lateinit var spnFecha: Spinner
     private lateinit var spnCalculo: Spinner
@@ -132,7 +132,7 @@ class MMSEActivity : AppCompatActivity() {
 
         guardarResultadosEnFirebase(puntuacionOrientacion, puntuacionCalculo)
 
-        val intent = Intent(this, ExplicacionMemoriaActivity::class.java)
+        val intent = Intent(this, ExplicacionMemoriaRgActivity::class.java)
         intent.putExtra("paciente_id", pacienteID)
         startActivity(intent)
         finish()
@@ -159,7 +159,7 @@ class MMSEActivity : AppCompatActivity() {
         )
 
         db.collection("Pacientes").document(pacienteID)
-            .collection("Pruebas").document(fechaActual) // Se usa la fecha como identificador
+            .collection("Pruebas").document("Prueba inicial " + fechaActual) // Se usa la fecha como identificador
             .set(resultado, SetOptions.merge()) // Evita sobrescribir otros datos previos
             .addOnSuccessListener {
                 Log.d("Firebase", "Resultados guardados correctamente en Firebase con fecha $fechaActual")

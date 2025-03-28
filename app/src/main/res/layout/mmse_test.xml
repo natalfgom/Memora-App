@@ -17,14 +17,15 @@
         <TextView
             android:id="@+id/tvTitulo"
             android:layout_width="365dp"
-            android:layout_height="149dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/alike"
             android:gravity="center"
             android:text="@string/mmse_title"
-            android:textSize="60sp"
+            android:textColor="#000000"
+            android:textSize="45sp"
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,107 +40,114 @@
             android:layout_marginTop="25dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="15dp"
+            android:textColor="#000000"
             android:fontFamily="@font/alike"
             android:text="@string/prueba_de_orientaci_n_y_c_lculo"
             android:textSize="24sp"
             android:textStyle="bold|italic"
-            app:layout_constraintBottom_toTopOf="@+id/tvPreguntaPais"
+            app:layout_constraintBottom_toTopOf="@+id/contenedorPreguntas"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitulo" />
 
-        <!-- Pregunta de orientación espacial -->
-        <TextView
-            android:id="@+id/tvPreguntaPais"
-            android:layout_width="wrap_content"
+        <!-- CONTENEDOR CON BORDE DISCONTINUO -->
+        <FrameLayout
+            android:id="@+id/contenedorPreguntas"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/alike"
-            android:paddingTop="5dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="5dp"
-            android:text="@string/question_country"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:layout_margin="16dp"
+            android:padding="16dp"
+            android:background="@drawable/dashed_border"
+            app:layout_constraintTop_toBottomOf="@id/tvSubtitulo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSubtitulo" />
+            app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Spinner de país -->
-        <Spinner
-            android:id="@+id/spnCountry"
-            android:layout_width="319dp"
-            android:layout_height="61dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bordered_edittext_borde_celeste"
-            android:entries="@array/answers_country"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPreguntaPais" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <!-- Pregunta de orientación temporal -->
-        <TextView
-            android:id="@+id/tvPreguntaFecha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
-            android:fontFamily="@font/alike"
-            android:paddingTop="5dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="5dp"
-            android:text="@string/question_date"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spnCountry" />
+                <!-- Pregunta de orientación espacial -->
+                <TextView
+                    android:id="@+id/tvPreguntaPais"
+                    android:layout_width="275dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/alike"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="5dp"
+                    android:text="@string/question_country"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-        <!-- Spinner de fecha -->
-        <Spinner
-            android:id="@+id/spnFecha"
-            android:layout_width="319dp"
-            android:layout_height="61dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bordered_edittext_borde_celeste"
-            android:entries="@array/answers_date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPreguntaFecha" />
+                <!-- Spinner de país -->
+                <Spinner
+                    android:id="@+id/spnCountry"
+                    android:layout_width="275dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bordered_edittext_borde_celeste"
+                    android:entries="@array/answers_country" />
 
-        <!-- Pregunta de cálculo -->
-        <TextView
-            android:id="@+id/tvPreguntaCalculo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
-            android:fontFamily="@font/alike"
-            android:paddingTop="5dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="5dp"
-            android:text="@string/question_calculation"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spnFecha" />
+                <!-- Pregunta de orientación temporal -->
+                <TextView
+                    android:id="@+id/tvPreguntaFecha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="@font/alike"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="5dp"
+                    android:text="@string/question_date"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-        <!-- Spinner de cálculo -->
-        <Spinner
-            android:id="@+id/spnCalculo"
-            android:layout_width="319dp"
-            android:layout_height="61dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bordered_edittext_borde_celeste"
-            android:entries="@array/answers_calculation"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPreguntaCalculo" />
+                <!-- Spinner de fecha -->
+                <Spinner
+                    android:id="@+id/spnFecha"
+                    android:layout_width="275dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bordered_edittext_borde_celeste"
+                    android:entries="@array/answers_date" />
+
+                <!-- Pregunta de cálculo -->
+                <TextView
+                    android:id="@+id/tvPreguntaCalculo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="@font/alike"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="5dp"
+                    android:text="@string/question_calculation"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- Spinner de cálculo -->
+                <Spinner
+                    android:id="@+id/spnCalculo"
+                    android:layout_width="275dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bordered_edittext_borde_celeste"
+                    android:entries="@array/answers_calculation" />
+
+            </LinearLayout>
+        </FrameLayout>
 
         <!-- Botón para ir a la prueba de Memoria -->
         <Button
@@ -147,17 +155,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="50dp"
             android:backgroundTint="@color/celeste_boton"
+            android:fontFamily="@font/alike"
             android:text="@string/btn_memory"
-
-            android:textSize="20sp"
             android:textColor="@color/black"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spnCalculo" />
+            app:layout_constraintTop_toBottomOf="@id/contenedorPreguntas" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

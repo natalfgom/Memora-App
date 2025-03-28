@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/celeste_boton"
+        android:paddingTop="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/toolbar"
+        app:title="@string/app_name"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"/>
+
+    <!-- Contenedor principal -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Barra de búsqueda -->
+        <EditText
+            android:id="@+id/buscarPruebasEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/buscar_pruebas"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:background="@android:color/white"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp"
+
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:autofillHints="username" />
+
+        <!-- Botón para solicitar nueva prueba (Solo visible para médicos) -->
+        <Button
+            android:id="@+id/btnSolicitarPrueba"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/solicitar_nueva_prueba"
+            android:visibility="gone"
+            android:backgroundTint="@color/rojo_guardar"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="Botón para que el médico solicite una nueva prueba" />
+        <Button
+            android:id="@+id/btnRealizarPrueba"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/realizar_prueba"
+            android:visibility="gone"
+            android:backgroundTint="@color/naranja_principal"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="Botón para que el paciente realice la prueba si el médico lo solicita"/>
+
+
+        <!-- Título de la sección -->
+        <TextView
+            android:id="@+id/pruebasDisponiblesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pruebass"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="Título de la lista de pruebas disponibles" />
+
+        <!-- Contenedor de la lista de pruebas -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="Lista de pruebas disponibles">
+
+            <LinearLayout
+                android:id="@+id/listaPruebasLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+
+    </LinearLayout>
+
+</LinearLayout>

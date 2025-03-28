@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.memora_app.pruebas.mmseRegistro
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
@@ -229,32 +230,38 @@ class RegistroActivity : AppCompatActivity() {
         db: FirebaseFirestore,
         coleccion: String,
         documentoId: String,
-        datos: HashMap<String, String>,
+        datos: HashMap<String, Any>,
         correo: String,
         password: String
     ) {
         db.collection(coleccion).document(documentoId).set(datos)
             .addOnSuccessListener {
-                crearUsuarioEnAuth(correo, password)
+                crearUsuarioEnAuth(correo, password, datos["rol"] as String? ?: "")
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Error al guardar en Firestore", Toast.LENGTH_SHORT).show()
             }
     }
 
-    private fun crearUsuarioEnAuth(correo: String, password: String) {
+
+    private fun crearUsuarioEnAuth(correo: String, password: String, rol: String) {
         val auth = FirebaseAuth.getInstance()
         auth.createUserWithEmailAndPassword(correo, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     cerrarTeclado()
-                    startActivity(Intent(this, LoginActivity::class.java))
+                    if (rol == "Paciente") {
+                        startActivity(Intent(this, mmseRegistro::class.java))
+                    } else {
+                        startActivity(Intent(this, LoginActivity::class.java))
+                    }
                     finish()
                 } else {
                     findViewById<EditText>(R.id.etCorreo).error = "Error al crear en Auth: ${task.exception?.message}"
                 }
             }
     }
+
 
     private fun cerrarTeclado() {
         val view = this.currentFocus
@@ -310,13 +317,18 @@ class RegistroActivity : AppCompatActivity() {
         }
     }
 
-    private fun recogerDatosComunes() = hashMapOf(
-        "nombre" to findViewById<EditText>(R.id.etNombre).text.toString(),
-        "apellidos" to findViewById<EditText>(R.id.etApellidos).text.toString(),
-        "dni" to findViewById<EditText>(R.id.etDni).text.toString(),
-        "telefono" to findViewById<EditText>(R.id.etTelefono).text.toString(),
-        "correo" to findViewById<EditText>(R.id.etCorreo).text.toString(),
-        "fechaNacimiento" to findViewById<EditText>(R.id.etFechaNacimiento).text.toString(),
-        "rol" to spinnerRol.selectedItem.toString()
-    )
+    private fun recogerDatosComunes(): HashMap<String, Any> {
+        return hashMapOf(
+            "nombre" to findViewById<EditText>(R.id.etNombre).text.toString(),
+            "apellidos" to findViewById<EditText>(R.id.etApellidos).text.toString(),
+            "dni" to findViewById<EditText>(R.id.etDni).text.toString(),
+            "telefono" to findViewById<EditText>(R.id.etTelefono).text.toString(),
+            "correo" to findViewById<EditText>(R.id.etCorreo).text.toString(),
+            "fechaNacimiento" to findViewById<EditText>(R.id.etFechaNacimiento).text.toString(),
+            "rol" to spinnerRol.selectedItem.toString(),
+            "pruebaSolicitada" to false
+        )
+    }
+
+
 }

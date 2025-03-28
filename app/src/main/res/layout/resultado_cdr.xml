@@ -7,43 +7,39 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:fillViewport="true"
-    tools:context=".pruebas.ResultadosMMSEActivity">
-
-
+    tools:context=".pruebas.ResultadosCDRActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="24dp">
 
-
-
         <!-- Título -->
         <TextView
-            android:id="@+id/tvResultadoTitulo"
+            android:id="@+id/tvResultadoTituloCDR"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="45dp"
             android:fontFamily="@font/alike"
             android:gravity="center"
             android:padding="20dp"
-            android:text="@string/resultados_mmse_titulo"
+            android:text="Resultados CDR-SB"
             android:textColor="#000000"
             android:textSize="34sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <!-- Contenedor con borde discontínuo -->
         <FrameLayout
-            android:id="@+id/contenedorResultados"
+            android:id="@+id/contenedorResultadosCDR"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:padding="20dp"
             android:background="@drawable/dashed_border"
-            app:layout_constraintTop_toBottomOf="@id/tvResultadoTitulo"
+            app:layout_constraintTop_toBottomOf="@id/tvResultadoTituloCDR"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -53,72 +49,97 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- Resultados (Solo valores sin títulos) -->
+                <!-- Clasificación global -->
                 <TextView
-                    android:id="@+id/tvPuntajeOrientacion"
+                    android:id="@+id/tvResultadoCDR"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/alike"
                     android:gravity="start"
                     android:paddingBottom="12dp"
-                    android:text="@string/puntaje_default"
+                    android:text="Clasificación:"
+                    android:textColor="#000000"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <!-- Resultados por categoría -->
+                <TextView
+                    android:id="@+id/tvResultadoMemoria"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alike"
+                    android:gravity="start"
+                    android:paddingBottom="12dp"
+                    android:text="Memoria:"
                     android:textColor="#000000"
                     android:textSize="20sp"
                     android:textStyle="bold|italic" />
 
                 <TextView
-                    android:id="@+id/tvPuntajeMemoria"
+                    android:id="@+id/tvResultadoOrientacion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/alike"
                     android:gravity="start"
                     android:paddingBottom="12dp"
-                    android:text="@string/puntaje_default"
+                    android:text="Orientación:"
                     android:textColor="#000000"
                     android:textSize="20sp"
                     android:textStyle="bold|italic" />
 
                 <TextView
-                    android:id="@+id/tvPuntajeCalculo"
+                    android:id="@+id/tvResultadoJuicio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/alike"
                     android:gravity="start"
                     android:paddingBottom="12dp"
-                    android:text="@string/puntaje_default"
+                    android:text="Juicio:"
                     android:textColor="#000000"
                     android:textSize="20sp"
                     android:textStyle="bold|italic" />
 
                 <TextView
-                    android:id="@+id/tvPuntajeComprension"
+                    android:id="@+id/tvResultadoActividades"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/alike"
                     android:gravity="start"
                     android:paddingBottom="12dp"
-                    android:text="@string/puntaje_default"
+                    android:text="Actividades:"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/tvResultadoCuidado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alike"
+                    android:gravity="start"
+                    android:paddingBottom="12dp"
+                    android:text="Cuidado:"
                     android:textColor="#000000"
                     android:textSize="20sp"
                     android:textStyle="bold|italic" />
             </LinearLayout>
         </FrameLayout>
 
-        <!-- Botón para volver al inicio -->
+        <!-- Botón para volver -->
         <Button
-            android:id="@+id/btnVolver"
+            android:id="@+id/btnVolverCDR"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/celeste_boton"
             android:fontFamily="@font/alike"
-            android:text="@string/volver_inicio"
+            android:text="Volver"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/contenedorResultadosCDR"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/contenedorResultados" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

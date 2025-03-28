@@ -104,7 +104,7 @@
 
 
         <!-- MMSE Test -->
-        <string name="mmse_title">Prueba inicial</string>
+        <string name="mmse_title">Prueba al paciente</string>
         <string name="question_country">¿En qué país se encuentra?</string>
         <string-array name="answers_country">
             <item>Seleccione un país</item>
@@ -260,6 +260,234 @@
     <string name="puntaje_total">Puntuación Total: %1$d - Clasificación: %2$s</string>
     <string name="debes_seleccionar_imagenes">Debes seleccionar las imágenes</string>
     <string name="seleccione_imagenes">Selecione las imágenes</string>
+
+
+
+    <string name="orientacion_label">Orientación:</string>
+    <string name="memoria_label">Memoria:</string>
+    <string name="calculo_label">Cálculo:</string>
+    <string name="comprension_label">Comprensión:</string>
+
+    <string name="puntaje_default">Puntaje: </string>
+    <string name="clasificacion_default">Clasificación: </string>
+
+    <string name="volver_inicio">Ir al inicio</string>
+    <string name="pruebass">Pruebas</string>
+    <string name="buscar_pruebas">Filtrar pruebas por fechas (ej: 2025-10-20)</string>
+    <string name="solicitar_nueva_prueba">Solicitar prueba</string>
+    <string name="realizar_prueba">Realizar nueva prueba</string>
+    <string name="btn_finalizar">Finalizar test</string>
+
+
+
+        <string name="cdrsb_titulo">Cuestionario al cuidador</string>
+        <string name="cdrsb_subtitulo">Evaluación desde la perspectiva del cuidador</string>
+        <string name="cdrsb_btn_finalizar">Finalizar evaluación</string>
+
+        <!-- Preguntas -->
+        <string name="cdrsb_q1">¿El paciente tiene problemas con la memoria o el pensamiento?</string>
+        <string name="cdrsb_q2">¿Puede recordar eventos recientes?</string>
+        <string name="cdrsb_q3">¿Se olvida completamente de eventos importantes (ej. viajes, bodas)?</string>
+        <string name="cdrsb_q4">¿Olvida detalles de eventos pasados, como cumpleaños o trabajos?</string>
+        <string name="cdrsb_q5">¿Sabe exactamente la fecha del día?</string>
+        <string name="cdrsb_q6">¿Puede orientarse en calles conocidas?</string>
+        <string name="cdrsb_q7">¿Se pierde con facilidad fuera de su vecindario?</string>
+        <string name="cdrsb_q8">¿Puede orientarse correctamente dentro de su casa?</string>
+        <string name="cdrsb_q9">¿Cómo considera su capacidad actual para resolver problemas?</string>
+        <string name="cdrsb_q10">¿Puede manejar pequeñas sumas de dinero?</string>
+        <string name="cdrsb_q11">¿Puede manejar correctamente las cuentas del hogar?</string>
+        <string name="cdrsb_q12">¿Puede manejar una emergencia en casa?</string>
+        <string name="cdrsb_q13">¿Puede comprender situaciones o explicaciones?</string>
+        <string name="cdrsb_q14">¿Se comporta apropiadamente en situaciones sociales?</string>
+        <string name="cdrsb_q15">¿El paciente sigue trabajando?</string>
+        <string name="cdrsb_q16">Si dejó de trabajar, ¿fue por problemas de memoria o pensamiento?</string>
+        <string name="cdrsb_q17">¿Puede salir a comprar solo lo que necesita?</string>
+        <string name="cdrsb_q18">¿Puede realizar actividades fuera del hogar de manera independiente?</string>
+        <string name="cdrsb_q19">¿Asiste a actividades sociales?</string>
+        <string name="cdrsb_q20">Si ya no asiste, ¿por qué?</string>
+        <string name="cdrsb_q21">¿Puede vestirse solo correctamente?</string>
+        <string name="cdrsb_q22">¿Se asea y arregla por sí mismo?</string>
+        <string name="cdrsb_q23">¿Puede comer solo correctamente?</string>
+        <string name="cdrsb_q24">¿Controla su esfínter (orina y heces)?</string>
+
+
+    <string-array name="cdrsb_q1_options">
+        <item>Seleccione una respuesta</item>
+        <item>No</item>
+        <item>Sí</item>
+    </string-array>
+
+    <string-array name="cdrsb_q2_options">
+        <item>Seleccione una respuesta</item>
+        <item>Generalmente</item>
+        <item>A veces</item>
+        <item>Rara vez</item>
+    </string-array>
+
+    <string-array name="cdrsb_q3_options">
+        <item>Seleccione una respuesta</item>
+        <item>Generalmente</item>
+        <item>A veces</item>
+        <item>Rara vez</item>
+    </string-array>
+
+    <string-array name="cdrsb_q4_options">
+        <item>Seleccione una respuesta</item>
+        <item>Generalmente</item>
+        <item>A veces</item>
+        <item>Rara vez</item>
+    </string-array>
+
+    <string-array name="cdrsb_q5_options">
+        <item>Seleccione una respuesta</item>
+        <item>Generalmente</item>
+        <item>A veces</item>
+        <item>Rara vez</item>
+        <item>No sé</item>
+    </string-array>
+
+    <string-array name="cdrsb_q6_options">
+        <item>Seleccione una respuesta</item>
+        <item>Generalmente</item>
+        <item>A veces</item>
+        <item>Rara vez</item>
+        <item>No sé</item>
+    </string-array>
+
+    <string-array name="cdrsb_q7_options">
+        <item>Seleccione una respuesta</item>
+        <item>No</item>
+        <item>Sí</item>
+    </string-array>
+
+    <string-array name="cdrsb_q8_options">
+        <item>Seleccione una respuesta</item>
+        <item>Generalmente</item>
+        <item>A veces</item>
+        <item>Rara vez</item>
+        <item>No sé</item>
+    </string-array>
+
+    <string-array name="cdrsb_q9_options">
+        <item>Seleccione una respuesta</item>
+        <item>Tan buena como antes</item>
+        <item>Buena, pero no como antes</item>
+        <item>Regular</item>
+        <item>Deficiente</item>
+        <item>No tiene capacidad</item>
+    </string-array>
+
+    <string-array name="cdrsb_q10_options">
+        <item>Seleccione una respuesta</item>
+        <item>Sin problemas</item>
+        <item>Algo de dificultad</item>
+        <item>Pérdida severa</item>
+    </string-array>
+
+
+    <string-array name="cdrsb_q11_options">
+        <item>Seleccione una respuesta</item>
+        <item>Sin problemas</item>
+        <item>Algo de dificultad</item>
+        <item>Pérdida severa</item>
+    </string-array>
+
+    <string-array name="cdrsb_q12_options">
+        <item>Seleccione una respuesta</item>
+        <item>Sí, como antes</item>
+        <item>Peor que antes debido a problemas cognitivos</item>
+        <item>Peor por otra razón</item>
+    </string-array>
+
+    <string-array name="cdrsb_q13_options">
+        <item>Seleccione una respuesta</item>
+        <item>Generalmente</item>
+        <item>A veces</item>
+        <item>Rara vez</item>
+        <item>No sé</item>
+    </string-array>
+
+    <string-array name="cdrsb_q14_options">
+        <item>Seleccione una respuesta</item>
+        <item>Generalmente</item>
+        <item>A veces</item>
+        <item>Rara vez</item>
+        <item>No sé</item>
+    </string-array>
+
+    <string-array name="cdrsb_q15_options">
+        <item>Seleccione una respuesta</item>
+        <item>Sí</item>
+        <item>No</item>
+        <item>No aplica</item>
+    </string-array>
+
+    <string-array name="cdrsb_q16_options">
+        <item>Seleccione una respuesta</item>
+        <item>No</item>
+        <item>Sí</item>
+        <item>No sé</item>
+    </string-array>
+
+    <string-array name="cdrsb_q17_options">
+        <item>Seleccione una respuesta</item>
+        <item>Sí</item>
+        <item>A veces</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="cdrsb_q18_options">
+        <item>Seleccione una respuesta</item>
+        <item>Sí</item>
+        <item>A veces</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="cdrsb_q19_options">
+        <item>Seleccione una respuesta</item>
+        <item>Sí</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="cdrsb_q20_options">
+        <item>Seleccione una respuesta</item>
+        <item>Falta de interés</item>
+        <item>Problemas de movilidad</item>
+        <item>Problemas de memoria</item>
+        <item>Otras razones</item>
+    </string-array>
+
+    <string-array name="cdrsb_q21_options">
+        <item>Seleccione una respuesta</item>
+        <item>Sin problemas</item>
+        <item>A veces necesita ayuda</item>
+        <item>Siempre necesita ayuda</item>
+    </string-array>
+
+    <string-array name="cdrsb_q22_options">
+        <item>Seleccione una respuesta</item>
+        <item>Sin problemas</item>
+        <item>A veces necesita ayuda</item>
+        <item>Siempre necesita ayuda</item>
+    </string-array>
+
+    <string-array name="cdrsb_q23_options">
+        <item>Seleccione una respuesta</item>
+        <item>Sin problemas</item>
+        <item>A veces usa utensilios incorrectamente</item>
+        <item>Necesita asistencia completa</item>
+    </string-array>
+
+    <string-array name="cdrsb_q24_options">
+        <item>Seleccione una respuesta</item>
+        <item>Sin problemas</item>
+        <item>Ocasionalmente tiene escapes</item>
+        <item>Incontinencia frecuente</item>
+    </string-array>
+
+
+
+
 
 
 </resources>

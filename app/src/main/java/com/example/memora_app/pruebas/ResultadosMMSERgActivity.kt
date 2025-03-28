@@ -6,7 +6,6 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import com.example.memora_app.InformacionpersonalActivity
 import com.example.memora_app.R
 import com.example.memora_app.inicio_paciente_activity
@@ -15,7 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ResultadosMMSEActivity : AppCompatActivity() {
+class ResultadosMMSERgActivity : AppCompatActivity() {
     private lateinit var btnVolver: Button
     private val db = FirebaseFirestore.getInstance()
 
@@ -29,16 +28,9 @@ class ResultadosMMSEActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_resultado)
+        setContentView(R.layout.activity_resultados_mmse)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
-
-        // Opcional: Mostrar botón de volver atrás (si lo necesitas)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-
-
+        btnVolver = findViewById(R.id.btnVolver)
 
         // Recibir el ID del paciente
         pacienteID = intent.getStringExtra("paciente_id") ?: ""
@@ -60,7 +52,7 @@ class ResultadosMMSEActivity : AppCompatActivity() {
         val fechaActual = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
 
         db.collection("Pacientes").document(pacienteID)
-            .collection("Pruebas").document(fechaActual)
+            .collection("Pruebas").document("Prueba inicial "+fechaActual)
             .get()
             .addOnSuccessListener { document ->
                 if (document.exists()) {
