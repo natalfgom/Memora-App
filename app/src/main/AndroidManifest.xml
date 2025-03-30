@@ -105,6 +105,32 @@
             android:name=".pruebas.ResultadosCDRActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".configuracionmedico.ListaPacienteCuidadorActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".configuracionmedico.OpcionesPacienteActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".configuracionmedico.ListaPruebasCDRActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".configuracionmedico.OpcionesMedico"
+            android:exported="true" />
+
+
+
+        <activity
+            android:name=".configuracionmedico.DetallePruebaCDRActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".configuracionmedico.DetalleRespuestasCDRActivity"
+            android:exported="true" />
+
 
 
 

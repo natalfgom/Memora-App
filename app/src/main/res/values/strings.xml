@@ -309,6 +309,8 @@
         <string name="cdrsb_q22">¿Se asea y arregla por sí mismo?</string>
         <string name="cdrsb_q23">¿Puede comer solo correctamente?</string>
         <string name="cdrsb_q24">¿Controla su esfínter (orina y heces)?</string>
+    <string name="paciente">Pacientes</string>
+    <string name="cuidadores">Cuidador</string>
 
 
     <string-array name="cdrsb_q1_options">
@@ -484,6 +486,17 @@
         <item>Ocasionalmente tiene escapes</item>
         <item>Incontinencia frecuente</item>
     </string-array>
+
+
+    <string name="resultados_cdr_titulo">Resultados CDR-SB</string>
+    <string name="clasificacion">Clasificación:</string>
+    <string name="memoria">Memoria:</string>
+    <string name="orientacion">Orientación:</string>
+    <string name="juicio">Juicio:</string>
+    <string name="actividades">Actividades:</string>
+    <string name="cuidado">Cuidado:</string>
+
+
 
 
 

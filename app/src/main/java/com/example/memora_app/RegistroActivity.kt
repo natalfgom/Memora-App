@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.memora_app.pruebas.CDRSBActivity
 import com.example.memora_app.pruebas.mmseRegistro
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -250,17 +251,26 @@ class RegistroActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     cerrarTeclado()
-                    if (rol == "Paciente") {
-                        startActivity(Intent(this, mmseRegistro::class.java))
-                    } else {
-                        startActivity(Intent(this, LoginActivity::class.java))
+                    when (rol) {
+                        "Paciente" -> {
+                            startActivity(Intent(this, mmseRegistro::class.java))
+                        }
+                        "Cuidador" -> {
+                            // Redirigir al cuidador aquí, cambia "TuActivityCuidador" por la clase que quieras:
+                            startActivity(Intent(this, CDRSBActivity::class.java))
+                        }
+                        else -> {
+                            startActivity(Intent(this, LoginActivity::class.java))
+                        }
                     }
                     finish()
                 } else {
-                    findViewById<EditText>(R.id.etCorreo).error = "Error al crear en Auth: ${task.exception?.message}"
+                    findViewById<EditText>(R.id.etCorreo).error =
+                        "Error al crear en Auth: ${task.exception?.message}"
                 }
             }
     }
+
 
 
     private fun cerrarTeclado() {

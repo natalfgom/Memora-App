@@ -43,7 +43,7 @@ class ListaPacientesActivity : AppCompatActivity() {
             return
         }
 
-        // 🔹 Buscar el ID del médico en Firestore usando su correo
+        // Buscar el ID del médico en Firestore usando su correo
         db.collection("Medicos").whereEqualTo("correo", medicoCorreo).get()
             .addOnSuccessListener { medicoSnapshot ->
                 if (medicoSnapshot.isEmpty) {
@@ -52,13 +52,12 @@ class ListaPacientesActivity : AppCompatActivity() {
                 }
 
                 val medicoId = medicoSnapshot.documents.first().id
-                obtenerPacientes(medicoId) // 🔹 Buscar los pacientes con ese ID de médico
+                obtenerPacientes(medicoId)
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Error al obtener el médico", Toast.LENGTH_LONG).show()
             }
 
-        // 🔹 Filtrar pacientes en tiempo real por DNI
         buscarPacientesEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -70,7 +69,6 @@ class ListaPacientesActivity : AppCompatActivity() {
         })
     }
 
-    // 🔹 Método para obtener pacientes asociados al ID del médico
     private fun obtenerPacientes(medicoId: String) {
         db.collection("Pacientes").whereEqualTo("idMedico", medicoId).get()
             .addOnSuccessListener { snapshot ->
@@ -96,7 +94,6 @@ class ListaPacientesActivity : AppCompatActivity() {
             }
     }
 
-    // 🔹 Método para actualizar la lista de pacientes en el layout
     private fun actualizarListaPacientes(listaPacientes: List<Map<String, String>>) {
         listaPacientesLayout.removeAllViews()
 
@@ -127,8 +124,9 @@ class ListaPacientesActivity : AppCompatActivity() {
             pacienteContainer.addView(pacienteTextView)
 
             pacienteContainer.setOnClickListener {
-                val intent = Intent(this@ListaPacientesActivity, vertest::class.java)
+                val intent = Intent(this@ListaPacientesActivity, OpcionesMedico::class.java)
                 intent.putExtra("PACIENTE_ID", pacienteId)
+                intent.putExtra("DNI_PACIENTE", dni)
                 startActivity(intent)
             }
 
