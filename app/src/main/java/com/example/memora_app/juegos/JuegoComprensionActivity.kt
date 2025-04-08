@@ -140,7 +140,7 @@ class JuegoComprensionActivity : AppCompatActivity() {
         )
 
         val timestamp = System.currentTimeMillis()
-        val docId = "$fecha-$timestamp"
+        val docId = "$fecha"
 
         val ref = FirebaseFirestore.getInstance()
             .collection("Pacientes").document(pacienteId)
