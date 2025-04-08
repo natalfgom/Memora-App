@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/clarito">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/celeste_boton"
+        android:paddingTop="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/toolbar"
+        app:title="@string/app_name"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"/>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp"
+        android:gravity="top|center_horizontal">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="70dp"
+            android:padding="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            android:background="@android:color/white">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:minHeight="300dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textoExplicacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alike"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="Cargando explicación..."
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/pinInput"
+                    android:layout_width="200dp"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="16dp"
+                    android:hint="PIN (4 dígitos)"
+                    android:inputType="numberPassword"
+                    android:maxLength="4"
+                    android:textAlignment="center"
+                    android:layout_marginBottom="45dp"
+                    android:textSize="18sp"
+                    android:textStyle="italic" />
+
+                <Button
+                    android:id="@+id/btnComenzar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:backgroundTint="@color/celeste_boton"
+                    android:paddingStart="32dp"
+                    android:paddingEnd="32dp"
+                    android:layout_marginBottom="70dp"
+                    android:text="@string/comenzarJuego"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</LinearLayout>

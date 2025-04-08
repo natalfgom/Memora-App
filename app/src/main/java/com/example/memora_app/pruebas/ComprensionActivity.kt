@@ -140,7 +140,7 @@ class ComprensionActivity : AppCompatActivity() {
             intent.putExtra("comprension_resultado", correctos)
             intent.putExtra("paciente_id", pacienteID)
             startActivity(intent)
-            finish()
+
         }
     }
 

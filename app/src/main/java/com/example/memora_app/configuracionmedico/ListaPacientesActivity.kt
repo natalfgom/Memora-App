@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.memora_app.InformacionpersonalActivity
 import com.example.memora_app.R
 import com.example.memora_app.inicio_cuidador_activity
 import com.example.memora_app.inicio_medico_activity
@@ -147,6 +148,10 @@ class ListaPacientesActivity : AppCompatActivity() {
             }
             R.id.menu_principal -> {
                 irAInicioSegunRol()
+                true
+            }
+            R.id.menu_informacion_personal -> {
+                startActivity(Intent(this, InformacionpersonalActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)

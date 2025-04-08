@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.memora_app.InformacionpersonalActivity
 import com.example.memora_app.R
 import com.example.memora_app.inicio_paciente_activity
+import com.example.memora_app.juegos.DificultadManager
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
@@ -39,7 +40,10 @@ class ResultadosMMSERgActivity : AppCompatActivity() {
         btnVolver.setOnClickListener {
             startActivity(Intent(this, inicio_paciente_activity::class.java))
             true
+
         }
+
+        DificultadManager.inicializarDesdeMMSE(pacienteID)
     }
 
     private fun obtenerResultados() {
@@ -88,6 +92,8 @@ class ResultadosMMSERgActivity : AppCompatActivity() {
 
 
     }
+
+
 
 
 

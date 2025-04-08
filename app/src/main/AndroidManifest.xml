@@ -131,7 +131,21 @@
             android:name=".configuracionmedico.DetalleRespuestasCDRActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".juegos.JuegoComprensionActivity"
+            android:exported="true" />
 
+        <activity
+            android:name=".juegos.PantallaPreparacionJuegoActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".juegos.ExplicacionComprensionActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".juegos.ResultadosComprensionActivity"
+            android:exported="true" />
 
 
         <meta-data

@@ -10,7 +10,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.memora_app.configuracionmedico.vertest
-import com.example.memora_app.pruebas.MMSEActivity
+import com.example.memora_app.juegos.ExplicacionComprensionActivity
+
+import com.example.memora_app.juegos.PantallaPreparacionJuegoActivity
+
 import com.example.memora_app.recuerdos.VerRecuerdos
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -49,8 +52,41 @@ class inicio_paciente_activity : AppCompatActivity() {
         }
 
         btnJuegos.setOnClickListener {
-            Toast.makeText(this, "Juegos seleccionados", Toast.LENGTH_SHORT).show()
+            val correoUsuario = FirebaseAuth.getInstance().currentUser?.email
+
+            if (correoUsuario == null) {
+                Toast.makeText(this, "Usuario no autenticado", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            FirebaseFirestore.getInstance().collection("Pacientes").get()
+                .addOnSuccessListener { documentos ->
+                    var encontrado = false
+
+                    for (doc in documentos) {
+                        val correo = doc.getString("correo")
+                        if (correo == correoUsuario) {
+                            val dniPaciente = doc.getString("dni")
+                            if (dniPaciente != null) {
+                                val intent = Intent(this, PantallaPreparacionJuegoActivity::class.java)
+                                intent.putExtra("pacienteId", dniPaciente)
+                                startActivity(intent)
+                                encontrado = true
+                                break
+                            }
+                        }
+                    }
+
+                    if (!encontrado) {
+                        Toast.makeText(this, "No se encontró el paciente con tu correo", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Error al buscar el paciente", Toast.LENGTH_SHORT).show()
+                }
         }
+
+
 
         btnHabitos.setOnClickListener {
             startActivity(Intent(this, Habitos_Activity::class.java))

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blanco"
+    tools:context=".juegos.PantallaPreparacionJuegoActivity">
+
+    <!-- TOOLBAR -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/celeste_boton"
+        android:paddingTop="24dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:title="@string/app_name"
+        app:menu="@menu/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- TÍTULO -->
+    <TextView
+        android:id="@+id/tituloJuegos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/alike"
+        android:text="@string/aquejuego"
+        android:textColor="@color/negro"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <!-- COMPRENSIÓN -->
+    <LinearLayout
+        android:id="@+id/btnComprension"
+        android:layout_width="175dp"
+        android:layout_height="156dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="13dp"
+        android:background="@drawable/bordered_edittext_celeste"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/btnMemoria"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tituloJuegos">
+
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="91dp"
+            android:contentDescription="@string/desc_comprension"
+            android:src="@drawable/comprencion" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comprensión"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- MEMORIA -->
+    <LinearLayout
+        android:id="@+id/btnMemoria"
+        android:layout_width="175dp"
+        android:layout_height="156dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bordered_edittext_celeste"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tituloJuegos">
+
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="91dp"
+            android:contentDescription="@string/desc_memoria"
+            android:src="@drawable/memoria" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Memoria"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- CÁLCULO -->
+    <LinearLayout
+        android:id="@+id/btnCalculo"
+        android:layout_width="175dp"
+        android:layout_height="156dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="13dp"
+        android:background="@drawable/bordered_edittext_celeste"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/btnOrientacion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnComprension">
+
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="91dp"
+            android:contentDescription="@string/desc_calculo"
+            android:src="@drawable/calcular" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cálculo"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- ORIENTACIÓN -->
+    <LinearLayout
+        android:id="@+id/btnOrientacion"
+        android:layout_width="175dp"
+        android:layout_height="156dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bordered_edittext_celeste"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMemoria">
+
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="91dp"
+            android:contentDescription="@string/desc_orientacion"
+            android:src="@drawable/orientacion" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Orientación"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

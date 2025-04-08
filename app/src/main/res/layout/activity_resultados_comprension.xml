@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blanco">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/celeste_boton"
+        android:paddingTop="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/toolbar"
+        app:title="@string/app_name"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+
+    <TextView
+        android:id="@+id/textoResultadoFinal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/adlam_display"
+        android:gravity="center"
+        android:text="¡Has terminado!"
+        android:textColor="@color/gray"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <ImageView
+        android:id="@+id/estrella3"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:alpha="0.0"
+        android:rotation="20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toEndOf="@id/estrella2"
+        app:layout_constraintTop_toTopOf="@id/estrella2" />
+
+    <ImageView
+        android:id="@+id/estrella4"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:alpha="0.0"
+        app:layout_constraintEnd_toStartOf="@id/estrella5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/estrella2" />
+
+    <ImageView
+        android:id="@+id/estrella5"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:alpha="0.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/estrella4"
+        app:layout_constraintTop_toBottomOf="@id/estrella2" />
+
+    <ImageView
+        android:id="@+id/estrella1"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:alpha="0.0"
+        android:rotation="-20"
+        app:layout_constraintEnd_toStartOf="@id/estrella2"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/estrella2" />
+
+    <ImageView
+        android:id="@+id/estrella2"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="68dp"
+        android:alpha="0.0"
+        android:src="@drawable/estrella_vacia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textoResultadoFinal" />
+
+
+    <Button
+        android:id="@+id/btnVolverInicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="@color/celeste_boton"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:text="@string/btn_volver_inicio"
+        android:textColor="@color/negro"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/estrella4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

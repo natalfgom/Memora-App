@@ -495,12 +495,14 @@
     <string name="juicio">Juicio:</string>
     <string name="actividades">Actividades:</string>
     <string name="cuidado">Cuidado:</string>
-
-
-
-
-
-
+    <string name="desc_comprension">Comprension</string>
+    <string name="desc_memoria">Memoria</string>
+    <string name="desc_calculo">Cálculo</string>
+    <string name="desc_orientacion">Orientación</string>
+    <string name="aquejuego">¿A que juego quieres jugar?</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="comenzarJuego">Comenzar Juego</string>
+    <string name="terminado">¡Has terminado!</string>
 
 
 </resources>
