@@ -169,6 +169,7 @@ class ExplicacionComprensionActivity : AppCompatActivity() {
         }
 
         startActivity(intent)
+
     }
 
 }
