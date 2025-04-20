@@ -13,6 +13,8 @@ import com.example.memora_app.R
 import com.example.memora_app.inicio_cuidador_activity
 import com.example.memora_app.inicio_medico_activity
 import com.example.memora_app.inicio_paciente_activity
+import com.google.firebase.firestore.FirebaseFirestore
+import java.time.LocalDate
 
 class PantallaPreparacionJuegoActivity : AppCompatActivity() {
 
@@ -31,34 +33,87 @@ class PantallaPreparacionJuegoActivity : AppCompatActivity() {
         pacienteId = intent.getStringExtra("pacienteId") ?: return
 
         // Preparar dificultades antes de jugar
+        DificultadManager.actualizarDificultades(pacienteId)
 
+        val btnComprension = findViewById<LinearLayout>(R.id.btnComprension)
+        val btnCalculo = findViewById<LinearLayout>(R.id.btnCalculo)
+        val btnMemoria = findViewById<LinearLayout>(R.id.btnMemoria)
+        val btnOrientacion = findViewById<LinearLayout>(R.id.btnOrientacion)
 
-
-        DificultadManager.actualizarDificultades(pacienteId, forzar = true)
-
-
-        // Corrección: los botones son LinearLayout en el layout
-        findViewById<LinearLayout>(R.id.btnComprension).setOnClickListener {
-            val intent = Intent(this, ExplicacionComprensionActivity::class.java)
-            intent.putExtra("pacienteId", pacienteId)
-            intent.putExtra("categoria", "Comprensión")
-            startActivity(intent)
+        btnComprension.setOnClickListener {
+            verificarSiHaJugadoHoy(pacienteId, "Comprensión") { yaJugo ->
+                if (yaJugo) {
+                    Toast.makeText(this, "Ya has jugado Comprensión hoy. Vuelve mañana.", Toast.LENGTH_LONG).show()
+                } else {
+                    val intent = Intent(this, ExplicacionComprensionActivity::class.java)
+                    intent.putExtra("pacienteId", pacienteId)
+                    intent.putExtra("categoria", "Comprensión")
+                    startActivity(intent)
+                }
+            }
         }
 
-        findViewById<LinearLayout>(R.id.btnCalculo).setOnClickListener {
-
+        btnCalculo.setOnClickListener {
+            verificarSiHaJugadoHoy(pacienteId, "Cálculo") { yaJugo ->
+                if (yaJugo) {
+                    Toast.makeText(this, "Ya has jugado Cálculo hoy. Vuelve mañana.", Toast.LENGTH_LONG).show()
+                } else {
+                    val intent = Intent(this, ExplicacionCalculoActivity::class.java)
+                    intent.putExtra("pacienteId", pacienteId)
+                    intent.putExtra("categoria", "Cálculo")
+                    startActivity(intent)
+                }
+            }
         }
 
-        findViewById<LinearLayout>(R.id.btnMemoria).setOnClickListener {
-
+        btnMemoria.setOnClickListener {
+            verificarSiHaJugadoHoy(pacienteId, "Memoria") { yaJugo ->
+                if (yaJugo) {
+                    Toast.makeText(this, "Ya has jugado Memoria hoy. Vuelve mañana.", Toast.LENGTH_LONG).show()
+                } else {
+                    val intent = Intent(this, ExplicacionMemoriaJuegoActivity::class.java)
+                    intent.putExtra("pacienteId", pacienteId)
+                    intent.putExtra("categoria", "Memoria")
+                    startActivity(intent)
+                }
+            }
         }
 
-        findViewById<LinearLayout>(R.id.btnOrientacion).setOnClickListener {
-
+        btnOrientacion.setOnClickListener {
+            verificarSiHaJugadoHoy(pacienteId, "Orientación") { yaJugo ->
+                if (yaJugo) {
+                    Toast.makeText(this, "Ya has jugado Memoria hoy. Vuelve mañana.", Toast.LENGTH_LONG).show()
+                } else {
+                    val intent = Intent(this, ExplicacionOrientacionActivity::class.java)
+                    intent.putExtra("pacienteId", pacienteId)
+                    intent.putExtra("categoria", "Orientación")
+                    startActivity(intent)
+                }
+            }
         }
     }
 
+    private fun verificarSiHaJugadoHoy(pacienteId: String, categoria: String, callback: (Boolean) -> Unit) {
+        val fechaHoy = LocalDate.now().toString()
+        val db = FirebaseFirestore.getInstance()
 
+        db.collection("Pacientes")
+            .document(pacienteId)
+            .collection("Juegos")
+            .document(categoria)
+            .collection("Fechas")
+            .document(fechaHoy)
+            .get()
+            .addOnSuccessListener { document ->
+                // Si no existe, puede ser que sea la primera vez que juega -> puede jugar
+                callback(document.exists())
+            }
+            .addOnFailureListener { e ->
+                // En caso de error inesperado, mejor permitir jugar
+                Toast.makeText(this, "No se pudo comprobar si ya jugó hoy. Se permitirá el acceso.", Toast.LENGTH_SHORT).show()
+                callback(false)
+            }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar, menu)
@@ -71,14 +126,17 @@ class PantallaPreparacionJuegoActivity : AppCompatActivity() {
                 onBackPressedDispatcher.onBackPressed()
                 true
             }
+
             R.id.menu_principal -> {
                 irAInicioSegunRol()
                 true
             }
+
             R.id.menu_informacion_personal -> {
                 startActivity(Intent(this, InformacionpersonalActivity::class.java))
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -99,6 +157,4 @@ class PantallaPreparacionJuegoActivity : AppCompatActivity() {
 
         startActivity(intent)
     }
-
-
 }

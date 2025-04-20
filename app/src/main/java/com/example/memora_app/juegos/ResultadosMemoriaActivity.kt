@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.memora_app.R
 import com.example.memora_app.inicio_paciente_activity
 
-class ResultadosComprensionActivity : AppCompatActivity() {
+class ResultadosMemoriaActivity : AppCompatActivity() {
 
     private lateinit var estrellas: List<ImageView>
     private lateinit var sonido: MediaPlayer
@@ -26,7 +26,7 @@ class ResultadosComprensionActivity : AppCompatActivity() {
         val mensajeFinal = findViewById<TextView>(R.id.textoResultadoFinal)
         val btnVolver = findViewById<Button>(R.id.btnVolverInicio)
 
-        mensajeFinal.text = "Has acertado $puntaje de $total preguntas."
+        mensajeFinal.text = "Has obtenido $puntaje de $total puntos."
 
         estrellas = listOf(
             findViewById(R.id.estrella1),
@@ -65,7 +65,7 @@ class ResultadosComprensionActivity : AppCompatActivity() {
                 estrellas[i].startAnimation(anim)
                 estrellas[i].visibility = View.VISIBLE
                 estrellas[i].alpha = 1f
-                // 🎵 Si quieres sonido:
+                // 🎵 Lógica preparada por si decides usar sonido más adelante:
                 //sonido = MediaPlayer.create(this, R.raw.pop)
                 //sonido.start()
             }, i * 300L)

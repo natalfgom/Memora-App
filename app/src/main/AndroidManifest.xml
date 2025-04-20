@@ -147,10 +147,43 @@
             android:name=".juegos.ResultadosComprensionActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".juegos.ResultadosCalculoActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".juegos.JuegoCalculoActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".juegos.ExplicacionCalculoActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".juegos.ExplicacionMemoriaJuegoActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".juegos.ResultadosMemoriaActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".juegos.JuegoMemoriaActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".juegos.JuegoOrientacionActivity"
+            android:exported="true" />
+        <activity
+            android:name=".juegos.ExplicacionOrientacionActivity"
+            android:exported="true" />
+
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+
 
 
     </application>

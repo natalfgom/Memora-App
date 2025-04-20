@@ -503,6 +503,30 @@
     <string name="siguiente">Siguiente</string>
     <string name="comenzarJuego">Comenzar Juego</string>
     <string name="terminado">¡Has terminado!</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="Queobjetofalta">¿Que objeto falta?</string>
+    <string name="Yelotro">¿Y el otro?</string>
+    <string name="imgobjeliminados">Imagen con objetos eliminados</string>
+    <string name="img">Imagen original</string>
+    <string name="pista">Ver pista</string>
+
+    <string name="img_original">Imagen original</string>
+    <string name="img_modificada">Imagen modificada</string>
+
+
+    <string name="objeto1">Primer objeto que falta</string>
+    <string name="objeto2">Segundo objeto que falta</string>
+    <string name="objeto3">Tercer objeto que falta</string>
+    <string name="texto_observar_imagen">Observa bien la imagen y dale a siguiente</string>
+
+    <string-array name="ubicaciones_memoria">
+        <item>Seleccione ubicación</item>
+        <item>Izquierda</item>
+        <item>Centro</item>
+        <item>Derecha</item>
+        <item>Arriba</item>
+        <item>Abajo</item>
+    </string-array>
 
 
 </resources>

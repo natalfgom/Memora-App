@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.memora_app.R
 import com.example.memora_app.inicio_paciente_activity
 
-class ResultadosComprensionActivity : AppCompatActivity() {
+class ResultadosCalculoActivity : AppCompatActivity() {
 
     private lateinit var estrellas: List<ImageView>
     private lateinit var sonido: MediaPlayer
@@ -65,7 +65,7 @@ class ResultadosComprensionActivity : AppCompatActivity() {
                 estrellas[i].startAnimation(anim)
                 estrellas[i].visibility = View.VISIBLE
                 estrellas[i].alpha = 1f
-                // 🎵 Si quieres sonido:
+                // 🎵 Lógica preparada por si decides usar sonido más adelante:
                 //sonido = MediaPlayer.create(this, R.raw.pop)
                 //sonido.start()
             }, i * 300L)

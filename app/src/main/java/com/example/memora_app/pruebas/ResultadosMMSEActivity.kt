@@ -64,7 +64,7 @@ class ResultadosMMSEActivity : AppCompatActivity() {
         Log.d("Resultados", "Paciente ID recibido: $pacienteID")
 
         // Comprobar y actualizar dificultades desde MMSE
-        DificultadManager.comprobarYActualizarDesdeMMSE(pacienteID)
+        DificultadManager.resultadosActualizar(pacienteID)
 
         // Cargar resultados desde Firebase
         obtenerResultados()

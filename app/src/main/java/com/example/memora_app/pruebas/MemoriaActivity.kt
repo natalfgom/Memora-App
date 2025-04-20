@@ -178,9 +178,9 @@ class MemoriaActivity : AppCompatActivity() {
 
     private fun clasificarDificultad(puntaje: Int): String {
         return when {
-            puntaje == 3 -> "Dificultad Alta "
-            puntaje in 1..2 -> "Dificultad Media "
-            else -> "Dificultad Baja "
+            puntaje == 3 -> "Dificultad Alta"
+            puntaje in 1..2 -> "Dificultad Media"
+            else -> "Dificultad Baja"
         }
     }
 }

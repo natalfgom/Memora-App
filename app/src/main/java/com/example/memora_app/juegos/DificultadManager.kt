@@ -172,68 +172,188 @@ object DificultadManager {
         }
     }
 
-    fun actualizarDificultades(pacienteId: String, forzar: Boolean = false, dias: Int = 7) {
+    fun resultadosActualizar(pacienteId: String) {
         val pacienteRef = db.collection("Pacientes").document(pacienteId)
         val dificultadesRef = pacienteRef.collection("Dificultades")
         val actualRef = dificultadesRef.document("Actual")
         val hoy = LocalDate.now().toString()
+        val hoyRef = dificultadesRef.document(hoy)
 
-        actualRef.get().addOnSuccessListener { doc ->
-            val fechaUltima = doc.get("fechaUltimaActualizacion") as? Timestamp
-            val hanPasado = fechaUltima == null || hanPasado7Dias(fechaUltima)
+        val pruebasRef = pacienteRef.collection("Pruebas")
+        pruebasRef.get().addOnSuccessListener { result ->
+            val documentos = result.documents
+            Log.d("DificultadManager", "Se encontraron ${documentos.size} documentos de prueba.")
 
-            if (forzar && !hanPasado) {
-                Log.w("DificultadManager", "⚠️ Se intentó forzar la actualización, pero NO han pasado 7 días. No se permite.")
-                return@addOnSuccessListener
+            val pruebaReciente = documentos
+                .filter { it.contains("Fecha") }
+                .sortedByDescending { it.getString("Fecha") }
+                .firstOrNull()
+
+            val fuente = pruebaReciente
+
+            if (fuente != null) {
+                Log.d("DificultadManager", "Usando prueba con ID: ${fuente.id}")
+            } else {
+                Log.w(
+                    "DificultadManager",
+                    "No se encontró ninguna prueba válida. Usando valores por defecto."
+                )
             }
 
-            if (hanPasado) {
-                Log.d("DificultadManager", "✅ Se procede a actualizar (forzar = $forzar, días = $dias)")
+            val data = fuente?.data as? Map<String, Any>
+            Log.d("DificultadManager", "Data cruda del documento fuente: $data")
 
-                val categorias = listOf("Comprensión", "Cálculo", "Memoria", "Orientación")
-                val fechas = (0 until dias).map { LocalDate.now().minusDays(it.toLong()).toString() }
+            val dificultades = if (data != null) {
+                mapOf(
+                    "Comprensión" to mapOf(
+                        "Dificultad" to getValorDificultad(data, "Comprensión"),
+                        "Puntaje" to getValorPuntaje(data, "Comprensión")
+                    ),
+                    "Cálculo" to mapOf(
+                        "Dificultad" to getValorDificultad(data, "Cálculo"),
+                        "Puntaje" to getValorPuntaje(data, "Cálculo")
+                    ),
+                    "Memoria" to mapOf(
+                        "Dificultad" to getValorDificultad(data, "Memoria"),
+                        "Puntaje" to getValorPuntaje(data, "Memoria")
+                    ),
+                    "Orientación" to mapOf(
+                        "Dificultad" to getValorDificultad(data, "Orientación"),
+                        "Puntaje" to getValorPuntaje(data, "Orientación")
+                    ),
+                    "fechaUltimaActualizacion" to Timestamp.now(),
+                    "MMSE_usado" to fuente?.id.orEmpty()
+                )
+            } else {
+                mapOf(
+                    "Comprensión" to mapOf("Dificultad" to "Dificultad Media", "Puntaje" to 0),
+                    "Cálculo" to mapOf("Dificultad" to "Dificultad Media", "Puntaje" to 0),
+                    "Memoria" to mapOf("Dificultad" to "Dificultad Media", "Puntaje" to 0),
+                    "Orientación" to mapOf("Dificultad" to "Dificultad Media", "Puntaje" to 0),
+                    "fechaUltimaActualizacion" to Timestamp.now(),
+                    "MMSE_usado" to ""
+                )
+            }
 
-                val nuevasDificultades = mutableMapOf<String, Map<String, Any>>()
-                var pendientes = categorias.size
+            // 1. Actualiza siempre el documento "Actual"
+            actualRef.set(dificultades)
+            Log.d("DificultadManager", "Documento 'Actual' actualizado correctamente.")
 
-                categorias.forEach { categoria ->
-                    val juegosRef = pacienteRef.collection("Juegos").document(categoria).collection("Fechas")
+            // 2. Solo crea el documento del día si no existe
+            hoyRef.get().addOnSuccessListener { docHoy ->
+                if (!docHoy.exists()) {
+                    hoyRef.set(dificultades)
+                    Log.d("DificultadManager", "Documento del día '$hoy' creado correctamente.")
+                } else {
+                    Log.d(
+                        "DificultadManager",
+                        "Documento del día '$hoy' ya existía. No se sobrescribe."
+                    )
+                }
+            }.addOnFailureListener {
+                Log.e("DificultadManager", "Error al verificar el documento del día: ${it.message}")
+            }
+        }.addOnFailureListener {
+            Log.e("DificultadManager", "Error al obtener las pruebas: ${it.message}")
+        }
+    }
 
-                    juegosRef.get().addOnSuccessListener { allDocs ->
-                        val puntajes = fechas.mapNotNull { fecha ->
-                            allDocs.documents.find { it.id == fecha }?.getLong("puntaje")?.toInt()
+    fun actualizarDificultades(pacienteId: String, forzar: Boolean = false, dias: Int = 7) {
+        val pacienteRef = db.collection("Pacientes").document(pacienteId)
+        val dificultadesRef = pacienteRef.collection("Dificultades")
+        val actualRef = dificultadesRef.document("Actual")
+        val hoy = LocalDate.now()
+
+        actualRef.get().addOnSuccessListener { doc ->
+            val timestampUltima = doc.get("fechaUltimaActualizacion") as? Timestamp
+            val fechaUltima = timestampUltima?.toDate()?.toInstant()?.atZone(ZoneId.systemDefault())?.toLocalDate()
+            val yaActualizadoHoy = fechaUltima == hoy
+            val haPasadoTiempo = timestampUltima == null || hanPasado7Dias(timestampUltima)
+
+            Log.d("DificultadManager", "📅 Fecha anterior: $fechaUltima")
+            Log.d("DificultadManager", "📅 Fecha actual: $hoy")
+            Log.d("DificultadManager", "📊 Ya actualizado hoy: $yaActualizadoHoy")
+            Log.d("DificultadManager", "📊 Han pasado $dias días: $haPasadoTiempo")
+
+            if (!forzar) {
+                if (yaActualizadoHoy) {
+                    Log.d("DificultadManager", "❌ Ya se actualizó hoy. No se vuelve a actualizar.")
+                    return@addOnSuccessListener
+                }
+
+                if (!haPasadoTiempo) {
+                    Log.d("DificultadManager", "❌ No han pasado $dias días. No se actualiza.")
+                    return@addOnSuccessListener
+                }
+            }
+
+            Log.d("DificultadManager", "✅ Se procede a actualizar (forzar = $forzar, días = $dias)")
+
+            val categorias = listOf("Comprensión", "Cálculo", "Memoria", "Orientación")
+            val fechas = (0 until dias).map { LocalDate.now().minusDays(it.toLong()).toString() }
+
+            val dificultadesAnteriores = mutableMapOf<String, String>()
+            for (cat in categorias) {
+                val diff = (doc.get(cat) as? Map<*, *>)?.get("Dificultad") as? String ?: "Dificultad Media"
+                dificultadesAnteriores[cat] = diff
+            }
+
+            val nuevasDificultades = mutableMapOf<String, Map<String, Any>>()
+            var pendientes = categorias.size
+
+            categorias.forEach { categoria ->
+                val juegosRef = pacienteRef.collection("Juegos").document(categoria).collection("Fechas")
+
+                juegosRef.get().addOnSuccessListener { allDocs ->
+                    val puntajes = fechas.mapNotNull { fecha ->
+                        allDocs.documents.find { it.id == fecha }?.getLong("puntaje")?.toInt()
+                    }
+
+                    Log.d("DificultadManager", "📈 Categoría: $categoria → Puntajes últimos $dias días: $puntajes")
+
+                    val media = if (puntajes.isNotEmpty()) puntajes.average().toInt() else 0
+                    val dificultadAnterior = dificultadesAnteriores[categoria] ?: "Dificultad Media"
+
+                    val nuevaDificultad = when {
+                        media >= 4 -> when (dificultadAnterior) {
+                            "Dificultad Baja" -> "Dificultad Media"
+                            "Dificultad Media" -> "Dificultad Alta"
+                            else -> "Dificultad Alta"
                         }
 
-                        Log.d("DificultadManager", "Categoría: $categoria → Puntajes últimos $dias días: $puntajes")
+                        media in 2..3 -> dificultadAnterior
 
-                        val media = if (puntajes.isNotEmpty()) puntajes.average().toInt() else 0
-                        val dificultad = when {
-                            media >= 4 -> "Dificultad Alta"
-                            media in 2..3 -> "Dificultad Media"
+                        else -> when (dificultadAnterior) {
+                            "Dificultad Alta" -> "Dificultad Media"
+                            "Dificultad Media" -> "Dificultad Baja"
                             else -> "Dificultad Baja"
                         }
+                    }
 
-                        Log.d("DificultadManager", "Categoría: $categoria → Media: $media → Dificultad: $dificultad")
+                    Log.d("DificultadManager", "📊 Categoría: $categoria → Media: $media → Nueva: $nuevaDificultad")
 
-                        nuevasDificultades[categoria] = mapOf("Dificultad" to dificultad, "Puntaje" to media)
+                    nuevasDificultades[categoria] = mapOf(
+                        "Dificultad" to nuevaDificultad,
+                        "Puntaje" to media
+                    )
 
-                        pendientes--
-                        if (pendientes == 0) {
-                            val resultadoFinal = mutableMapOf<String, Any>(
-                                "fechaUltimaActualizacion" to Timestamp.now()
-                            )
-                            resultadoFinal.putAll(nuevasDificultades)
+                    pendientes--
+                    if (pendientes == 0) {
+                        val resultadoFinal = mutableMapOf<String, Any>(
+                            "fechaUltimaActualizacion" to com.google.firebase.Timestamp.now()
+                        )
+                        resultadoFinal.putAll(nuevasDificultades)
 
-                            dificultadesRef.document("Actual").set(resultadoFinal)
-                            dificultadesRef.document(hoy).set(resultadoFinal)
-                        }
+                        dificultadesRef.document("Actual").set(resultadoFinal)
+                        dificultadesRef.document(hoy.toString()).set(resultadoFinal)
+                        Log.d("DificultadManager", "✅ Actualización de dificultades completada.")
                     }
                 }
-            } else {
-                Log.d("DificultadManager", "❌ No se actualiza porque no han pasado 7 días y no se forzó.")
             }
         }
     }
+
+
 
 
     fun obtenerDificultadActual(pacienteId: String, categoria: String, callback: (String) -> Unit) {
