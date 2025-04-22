@@ -32,31 +32,31 @@ class VerRecuerdos : AppCompatActivity() {
         setContentView(R.layout.ver_recuerdos)
 
 
-        // Configurar Toolbar
+
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        // Opcional: Mostrar botón de volver atrás (si lo necesitas)
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        // Inicializar Firebase
+
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
-        // Inicializar vistas
+
         imageViewRecuerdo = findViewById(R.id.imageViewRecuerdo)
         textViewDescripcion = findViewById(R.id.textViewDescripcion)
 
 
-        // Obtener y mostrar un recuerdo aleatorio
+
         obtenerRecuerdo()
     }
 
     private fun obtenerRecuerdo() {
         val usuarioEmail = auth.currentUser?.email ?: return
 
-        // Buscar el paciente asociado al usuario autenticado
+
         db.collection("Pacientes")
             .whereEqualTo("correo", usuarioEmail)
             .get()
@@ -81,7 +81,7 @@ class VerRecuerdos : AppCompatActivity() {
             .get()
             .addOnSuccessListener { documentos ->
                 if (!documentos.isEmpty) {
-                    // Seleccionar un recuerdo al azar
+
                     val recuerdoAleatorio = documentos.documents[Random.nextInt(documentos.size())]
                     val imageUrl = recuerdoAleatorio.getString("imageUrl") ?: ""
                     val descripcion = recuerdoAleatorio.getString("description") ?: getString(R.string.recuerdo_descripcion)
@@ -93,7 +93,7 @@ class VerRecuerdos : AppCompatActivity() {
 
 
 
-                    // Cargar la imagen con Glide
+
                     Glide.with(this)
                         .load(imageUrl)
                         .into(imageViewRecuerdo)

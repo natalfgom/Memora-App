@@ -23,15 +23,13 @@ import java.util.*
 
 class ResultadosMMSEActivity : AppCompatActivity() {
 
-    private lateinit var btnVolver: Button
+
     private val db = FirebaseFirestore.getInstance()
 
     private var puntuacionOrientacion = 0
     private var puntuacionMemoria = 0
     private var puntuacionCalculo = 0
     private var puntuacionComprension = 0
-    private var puntuacionTotal = 0
-    private var clasificacionFinal = ""
     private var pacienteID: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +38,7 @@ class ResultadosMMSEActivity : AppCompatActivity() {
 
         Log.d("Resultados", "Entrando en ResultadosMMSEActivity")
 
-        // Toolbar
+
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
@@ -48,11 +46,6 @@ class ResultadosMMSEActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
 
-
-        // Inicializar vistas
-
-
-        // Recibir el ID del paciente
         pacienteID = intent.getStringExtra("paciente_id") ?: ""
 
         if (pacienteID.isEmpty()) {
@@ -63,10 +56,10 @@ class ResultadosMMSEActivity : AppCompatActivity() {
 
         Log.d("Resultados", "Paciente ID recibido: $pacienteID")
 
-        // Comprobar y actualizar dificultades desde MMSE
+
         DificultadManager.resultadosActualizar(pacienteID)
 
-        // Cargar resultados desde Firebase
+
         obtenerResultados()
 
 

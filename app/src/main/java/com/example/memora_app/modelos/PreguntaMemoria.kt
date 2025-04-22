@@ -9,6 +9,6 @@ data class PreguntaMemoria(
     val texto: String?,
     val pregunta: String,
     val opciones: List<String>,
-    val respuestaCorrecta: Int = -1, // para dificultad baja
-    val respuestasCorrectas: List<Int> = emptyList() // para media y alta
+    val respuestaCorrecta: Int = -1,
+    val respuestasCorrectas: List<Int> = emptyList()
 )

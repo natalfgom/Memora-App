@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.memora_app.configuracionmedico.ListaPacientesActivity
+import com.example.memora_app.estadisticas.EstadisticasMedicoActivity
 import com.example.memora_app.pruebas.MMSEActivity
 import com.example.memora_app.recuerdos.VerRecuerdos
 
@@ -19,11 +20,11 @@ class inicio_medico_activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.inicio_medico)
 
-        // Configurar Toolbar
+
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        // Opcional: Mostrar botón de volver atrás (si lo necesitas)
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
@@ -35,7 +36,8 @@ class inicio_medico_activity : AppCompatActivity() {
 
 
         btnEstadisticas.setOnClickListener {
-            Toast.makeText(this, "Estadísticas seleccionadas", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, EstadisticasMedicoActivity::class.java)
+            startActivity(intent)
         }
 
 

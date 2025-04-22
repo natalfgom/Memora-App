@@ -52,11 +52,23 @@ dependencies {
     implementation(libs.volley)
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation(libs.photoview)
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
     implementation("com.davemorrissey.labs:subsampling-scale-image-view:3.10.0")
+    implementation(libs.firebase.messaging.ktx)
     kapt("com.github.bumptech.glide:compiler:4.12.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Import the BoM for the Firebase platform
+    implementation(platform("com.google.firebase:firebase-bom:33.12.0"))
+
+    // Add the dependencies for the In-App Messaging and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-inappmessaging-display")
+    implementation("com.google.firebase:firebase-analytics")
+
 
 }

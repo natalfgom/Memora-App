@@ -16,6 +16,8 @@ import com.example.memora_app.inicio_cuidador_activity
 import com.example.memora_app.inicio_medico_activity
 import com.example.memora_app.inicio_paciente_activity
 import com.example.memora_app.pruebas.CDRSBActivity
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.analytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -67,7 +69,7 @@ class ListaPruebasCDRActivity : AppCompatActivity() {
             }
         })
 
-        // Médico solicita prueba CDR
+
         btnSolicitarPruebaCDR.setOnClickListener {
             db.collection("Cuidadores").document(cuidadorId)
                 .update("pruebaCDRSolicitada", true)
@@ -77,6 +79,8 @@ class ListaPruebasCDRActivity : AppCompatActivity() {
                 .addOnFailureListener {
                     Toast.makeText(this, "Error al solicitar prueba", Toast.LENGTH_SHORT).show()
                 }
+
+
         }
 
         // Cuidador realiza la prueba CDR

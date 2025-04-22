@@ -169,9 +169,7 @@ class mmseRegistro : AppCompatActivity() {
             }
     }
 
-    /**
-     * Asigna un nivel de dificultad basado en el puntaje obtenido.
-     */
+
     private fun clasificarDificultad(area: String, puntaje: Int): String {
         return when (area) {
             "Orientación" -> when {

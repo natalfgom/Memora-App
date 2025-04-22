@@ -13,6 +13,10 @@
     <color name="gray">#808080</color> <!-- Color gris estándar -->
     <color name="clarito">#F0EFED</color>
 
+    <color name="azul_claro">#42A5F5</color>
+    <color name="rosa_claro">#F48FB1</color>
+    <color name="verde_claro">#81C784</color>
+
 
 
 

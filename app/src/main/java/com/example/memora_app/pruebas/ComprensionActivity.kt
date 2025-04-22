@@ -49,7 +49,7 @@ class ComprensionActivity : AppCompatActivity() {
         btnSiguiente = findViewById(R.id.btnSiguiente)
         contenedorGrid = findViewById(R.id.contenedorGrid)
 
-        // Recibir el ID del paciente
+
         pacienteID = intent.getStringExtra("paciente_id") ?: ""
 
         if (pacienteID.isEmpty()) {
@@ -71,7 +71,7 @@ class ComprensionActivity : AppCompatActivity() {
     }
 
     private fun iniciarPrueba() {
-        if (intentos < 5) { // Se realizarán 5 rondas
+        if (intentos < 5) {
             intentos++
             seleccionRealizada = false
             btnSiguiente.visibility = View.GONE
@@ -99,7 +99,7 @@ class ComprensionActivity : AppCompatActivity() {
 
         contenedorGrid.visibility = View.VISIBLE
 
-        val opciones = imagenes.shuffled() // Se muestran todas las imágenes en cada intento
+        val opciones = imagenes.shuffled()
 
         Handler(Looper.getMainLooper()).postDelayed({
             opciones.forEach { opcion ->

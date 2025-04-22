@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
 
     <application
@@ -94,7 +95,18 @@
             android:exported="true" />
         <activity
             android:name=".configuracionmedico.vertest"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="https"
+                    android:host="memoraapp.com"
+                    android:path="/tests" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".configuracionmedico.ListaPacientesActivity"
             android:exported="true" />
@@ -115,7 +127,18 @@
 
         <activity
             android:name=".configuracionmedico.ListaPruebasCDRActivity"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="https"
+                    android:host="memoraapp.com"
+                    android:path="/cdr" />
+            </intent-filter>
+        </activity>
+
 
         <activity
             android:name=".configuracionmedico.OpcionesMedico"
@@ -178,10 +201,32 @@
             android:name=".juegos.ExplicacionOrientacionActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".estadisticas.EstadisticasMedicoActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".estadisticas.EstadisticasFiltradasActivity"
+            android:exported="true" />
+
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+
+
+
+
 
 
 

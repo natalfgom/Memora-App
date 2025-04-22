@@ -98,12 +98,12 @@ class ComprensionRgActivity : AppCompatActivity() {
         gridLayout.visibility = View.VISIBLE
         gridLayout.columnCount = 2
         gridLayout.removeAllViews()
-        gridLayout.columnCount = 2  // Mantener distribución en 3 columnas
+        gridLayout.columnCount = 2
 
-        contenedorGrid.visibility = View.VISIBLE // También si el FrameLayout lo contiene
+        contenedorGrid.visibility = View.VISIBLE
 
 
-        val opciones = imagenes.shuffled() // Se muestran **todas** las imágenes en cada intento
+        val opciones = imagenes.shuffled()
 
         Log.d("ComprensionActivity", "Mostrando opciones de imágenes en gridLayout...")
 
@@ -158,7 +158,7 @@ class ComprensionRgActivity : AppCompatActivity() {
             return
         }
 
-        // Obtener la fecha actual en formato "yyyy-MM-dd"
+
         val fechaActual = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
 
         val resultado = hashMapOf(
@@ -179,7 +179,7 @@ class ComprensionRgActivity : AppCompatActivity() {
             }
     }
 
-    // Función para clasificar la dificultad según el puntaje obtenido
+
     private fun clasificarDificultad(puntaje: Int): String {
         return when {
             puntaje >= 4 -> "Dificultad Alta"  // 5 o 4

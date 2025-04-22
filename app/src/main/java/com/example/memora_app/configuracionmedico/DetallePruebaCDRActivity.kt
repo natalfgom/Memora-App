@@ -29,14 +29,14 @@ class DetallePruebaCDRActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // Datos del intent
+
         val fecha = intent.getStringExtra("FECHA_PRUEBA") ?: return
         val dniPaciente = intent.getStringExtra("DNI_PACIENTE") ?: return
         val cuidadorId = intent.getStringExtra("CUIDADOR_ID") ?: return
         val docId = "CDR-$fecha"
         val docRespuestasId = "Respuestas-$fecha"
 
-        // Referencias UI
+
         val tvClasificacion = findViewById<TextView>(R.id.tvResultadoCDR)
         val tvMemoria = findViewById<TextView>(R.id.tvResultadoMemoria)
         val tvOrientacion = findViewById<TextView>(R.id.tvResultadoOrientacion)
@@ -47,7 +47,7 @@ class DetallePruebaCDRActivity : AppCompatActivity() {
         btnVerRespuestas = findViewById(R.id.btnVerRespuestas)
 
 
-        // Cargar resumen
+
         db.collection("Cuidadores").document(cuidadorId)
             .collection("PruebasCDR").document(docId)
             .get()
@@ -71,7 +71,7 @@ class DetallePruebaCDRActivity : AppCompatActivity() {
                 }
             }
 
-        // Verificar si existe documento de respuestas
+
         db.collection("Cuidadores").document(cuidadorId)
             .collection("PruebasCDR").document(docRespuestasId)
             .get()

@@ -34,7 +34,7 @@ class DetalleRespuestasCDRActivity : AppCompatActivity() {
         val fecha = intent.getStringExtra("FECHA_PRUEBA") ?: return
         val docId = "Respuestas-$fecha"
 
-        // 🔍 Leer respuestas directamente
+
         db.collection("Cuidadores").document(cuidadorId)
             .collection("PruebasCDR").document(docId)
             .get()

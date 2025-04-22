@@ -13,6 +13,7 @@ firebaseAuthKtx = "23.2.0"
 firebaseStorageKtx = "21.0.1"
 volley = "1.2.1"
 photoview = "2.3.0"
+firebaseMessagingKtx = "24.1.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -26,7 +27,8 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
 firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage-ktx", version.ref = "firebaseStorageKtx" }
 volley = { group = "com.android.volley", name = "volley", version.ref = "volley" }
-photoview = { group = "com.github.chrisbanes", name = "PhotoView", version.ref = "photoview" }  # Nueva línea
+photoview = { group = "com.github.chrisbanes", name = "PhotoView", version.ref = "photoview" }
+firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }  # Nueva línea
 
 
 [plugins]

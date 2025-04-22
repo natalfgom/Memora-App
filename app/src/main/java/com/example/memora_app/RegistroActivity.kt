@@ -74,7 +74,7 @@ class RegistroActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {  // Esta es la flecha
-            finish()  // Cierra la actividad actual
+            finish()
             return true
         }
         return super.onOptionsItemSelected(item)
@@ -110,7 +110,7 @@ class RegistroActivity : AppCompatActivity() {
                 campo(it).error = "Campo obligatorio"
                 esValido = false
             } else {
-                campo(it).error = null // Limpia error si ya se rellenó
+                campo(it).error = null
             }
         }
 
@@ -256,7 +256,7 @@ class RegistroActivity : AppCompatActivity() {
                             startActivity(Intent(this, mmseRegistro::class.java))
                         }
                         "Cuidador" -> {
-                            // Redirigir al cuidador aquí, cambia "TuActivityCuidador" por la clase que quieras:
+
                             startActivity(Intent(this, CDRSBActivity::class.java))
                         }
                         else -> {

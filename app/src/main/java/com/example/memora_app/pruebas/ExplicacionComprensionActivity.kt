@@ -11,7 +11,7 @@ class ExplicacionComprensionActivity : AppCompatActivity() {
     private lateinit var btnComenzar: Button
     private lateinit var tvExplicacion: TextView
 
-    private lateinit var pacienteID: String  // Variable para almacenar el ID del paciente
+    private lateinit var pacienteID: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,17 +20,17 @@ class ExplicacionComprensionActivity : AppCompatActivity() {
         tvExplicacion = findViewById(R.id.tvExplicacion)
         btnComenzar = findViewById(R.id.btnComenzar)
 
-        // Obtener el ID del paciente desde el Intent
+
         pacienteID = intent.getStringExtra("paciente_id") ?: ""
 
-        // Verificar que se haya recibido correctamente el ID del paciente
+
         if (pacienteID.isEmpty()) {
-            finish() // Cerrar la actividad si no se recibió el ID del paciente
+            finish()
         }
 
         btnComenzar.setOnClickListener {
             val intent = Intent(this, ComprensionActivity::class.java)
-            intent.putExtra("paciente_id", pacienteID) // Pasar el ID a la siguiente actividad
+            intent.putExtra("paciente_id", pacienteID)
             startActivity(intent)
             finish()
         }

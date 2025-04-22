@@ -15,7 +15,7 @@ import com.example.memora_app.inicio_paciente_activity
 class ResultadosComprensionActivity : AppCompatActivity() {
 
     private lateinit var estrellas: List<ImageView>
-    private lateinit var sonido: MediaPlayer
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,9 +65,7 @@ class ResultadosComprensionActivity : AppCompatActivity() {
                 estrellas[i].startAnimation(anim)
                 estrellas[i].visibility = View.VISIBLE
                 estrellas[i].alpha = 1f
-                // 🎵 Si quieres sonido:
-                //sonido = MediaPlayer.create(this, R.raw.pop)
-                //sonido.start()
+
             }, i * 300L)
         }
     }

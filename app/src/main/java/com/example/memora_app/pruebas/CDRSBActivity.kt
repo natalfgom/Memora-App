@@ -22,7 +22,7 @@ class CDRSBActivity : AppCompatActivity() {
 
     private val secciones = listOf("Memoria", "Orientación", "Juicio", "Actividades", "Cuidado")
     private val seccionPreguntas = mutableMapOf<String, MutableList<Spinner>>()
-    private val respuestasMap = mutableMapOf<String, Map<String, Any>>()  // Para guardar respuestas
+    private val respuestasMap = mutableMapOf<String, Map<String, Any>>()
 
     private val puntuacionesPorPregunta: Map<Int, List<Double>> = mapOf(
         1 to listOf(0.0, 0.0, 1.0),
@@ -74,7 +74,7 @@ class CDRSBActivity : AppCompatActivity() {
 
                 guardarResultados(resultados) {
                     guardarRespuestas()
-                    // Aquí lanzas la activity de resultados
+
                     val intent = Intent(this, ResultadosCDRActivity::class.java)
                     startActivity(intent)
                     finish()

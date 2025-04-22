@@ -32,12 +32,12 @@ class OpcionesMedico : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // Opcional: Mostrar botón de volver atrás (si lo necesitas)
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
 
-        // Referencias a los layouts tipo botón
+
         val pacienteLayout = findViewById<LinearLayout>(R.id.paciente)
         val cuidadorLayout = findViewById<LinearLayout>(R.id.cuidador)
 

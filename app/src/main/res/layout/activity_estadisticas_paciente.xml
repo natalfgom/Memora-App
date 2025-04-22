@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FAFAFA">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/celeste_boton"
+        android:paddingTop="24dp"
+        app:title="@string/app_name"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:menu="@menu/toolbar" />
+
+    <!-- ScrollView para el contenido -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Filtros -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp">
+
+                <!-- Tipo de dato -->
+                <Spinner
+                    android:id="@+id/spinnerTipoDato"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="12dp"
+                    android:backgroundTint="@color/celeste_boton" />
+
+                <!-- Fechas -->
+                <!-- Fechas (ajustada para evitar que se corte la segunda) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    android:weightSum="4"
+                    android:layout_marginTop="8dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnFechaInicio"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="37dp"
+                            android:backgroundTint="@color/celeste_boton"
+                            android:text="Desde"
+                            android:textColor="@android:color/black" />
+
+                        <TextView
+                            android:id="@+id/tvFechaInicio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="4dp"
+                            android:gravity="center_vertical"
+                            android:paddingHorizontal="8dp"
+                            android:text="Sin fecha"
+                            android:textColor="#000000"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginStart="8dp">
+
+                        <Button
+                            android:id="@+id/btnFechaFin"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="37dp"
+                            android:backgroundTint="@color/celeste_boton"
+                            android:text="Hasta"
+                            android:textColor="@android:color/black" />
+
+                        <TextView
+                            android:id="@+id/tvFechaFin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="4dp"
+                            android:gravity="center_vertical"
+                            android:paddingHorizontal="8dp"
+                            android:text="Sin fecha"
+                            android:textColor="#000000"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Gráfico de puntuaciones -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/adlam_display"
+                android:text="Evolución de puntuaciones"
+                android:textAlignment="center"
+                android:textColor="#424242"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chartPuntuaciones"
+                android:layout_width="match_parent"
+                android:layout_height="249dp"
+                android:layout_marginTop="12dp" />
+
+            <!-- Leyenda -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/adlam_display"
+                android:text="Leyenda de dificultad"
+                android:textAlignment="center"
+                android:textColor="#424242"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="24dp"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <View
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="#00C853"
+                        android:layout_marginBottom="4dp"
+                        android:layout_gravity="center" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Baja"
+                        android:textColor="#555"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <View
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="#FFA726"
+                        android:layout_marginBottom="4dp"
+                        android:layout_gravity="center" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Media"
+                        android:textColor="#555"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <View
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="#D32F2F"
+                        android:layout_marginBottom="4dp"
+                        android:layout_gravity="center" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alta"
+                        android:textColor="#555"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Gráfico de dificultad si se usa -->
+            <TextView
+                android:id="@+id/tituloDificultad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dificultad activa por fechas"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#424242"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone" />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chartDificultad"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -16,7 +16,7 @@ class ListaPacienteCuidadorActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private lateinit var listaPacientesLayout: LinearLayout
     private lateinit var buscarPacientesEditText: EditText
-    private val pacientes = mutableListOf<Map<String, String>>() // id + dni
+    private val pacientes = mutableListOf<Map<String, String>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

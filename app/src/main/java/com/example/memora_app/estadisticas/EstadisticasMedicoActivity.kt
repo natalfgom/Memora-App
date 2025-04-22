@@ -1,4 +1,4 @@
-package com.example.memora_app.configuracionmedico
+package com.example.memora_app.estadisticas
 
 import android.content.Intent
 import android.os.Bundle
@@ -17,7 +17,7 @@ import com.example.memora_app.inicio_paciente_activity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class ListaPacientesActivity : AppCompatActivity() {
+class EstadisticasMedicoActivity : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()
     private val pacientes = mutableListOf<Map<String, String>>()
@@ -28,7 +28,6 @@ class ListaPacientesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_pacientes)
 
-
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -36,14 +35,12 @@ class ListaPacientesActivity : AppCompatActivity() {
         listaPacientesLayout = findViewById(R.id.listaPacientesLayout)
         buscarPacientesEditText = findViewById(R.id.buscarPacientesEditText)
 
-
         val medicoCorreo = FirebaseAuth.getInstance().currentUser?.email
 
         if (medicoCorreo == null) {
             Toast.makeText(this, "Error: Usuario no autenticado", Toast.LENGTH_LONG).show()
             return
         }
-
 
         db.collection("Medicos").whereEqualTo("correo", medicoCorreo).get()
             .addOnSuccessListener { medicoSnapshot ->
@@ -73,22 +70,13 @@ class ListaPacientesActivity : AppCompatActivity() {
     private fun obtenerPacientes(medicoId: String) {
         db.collection("Pacientes").whereEqualTo("idMedico", medicoId).get()
             .addOnSuccessListener { snapshot ->
-                if (snapshot.isEmpty) {
-                    val noPacientesText = TextView(this).apply {
-                        text = "No hay pacientes registrados."
-                        setPadding(16, 16, 16, 16)
-                        textSize = 18f
-                    }
-                    listaPacientesLayout.addView(noPacientesText)
-                } else {
-                    pacientes.clear()
-                    for (doc in snapshot.documents) {
-                        val pacienteId = doc.id
-                        val dni = doc.getString("dni") ?: "Desconocido"
-                        pacientes.add(mapOf("id" to pacienteId, "dni" to dni))
-                    }
-                    actualizarListaPacientes(pacientes)
+                pacientes.clear()
+                for (doc in snapshot.documents) {
+                    val pacienteId = doc.id
+                    val dni = doc.getString("dni") ?: "Desconocido"
+                    pacientes.add(mapOf("id" to pacienteId, "dni" to dni))
                 }
+                actualizarListaPacientes(pacientes)
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Error al obtener pacientes", Toast.LENGTH_LONG).show()
@@ -125,7 +113,7 @@ class ListaPacientesActivity : AppCompatActivity() {
             pacienteContainer.addView(pacienteTextView)
 
             pacienteContainer.setOnClickListener {
-                val intent = Intent(this@ListaPacientesActivity, OpcionesMedico::class.java)
+                val intent = Intent(this@EstadisticasMedicoActivity, EstadisticasFiltradasActivity::class.java)
                 intent.putExtra("PACIENTE_ID", pacienteId)
                 intent.putExtra("DNI_PACIENTE", dni)
                 startActivity(intent)

@@ -18,15 +18,15 @@ class Habitos_Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.habitos)
 
-        // Configurar Toolbar
+
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        // Opcional: Mostrar botón de volver atrás (si lo necesitas)
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        // Justificar textos si la versión lo permite
+
         justificarTexto(R.id.textView)
         justificarTexto(R.id.textView4)
         justificarTexto(R.id.textView7)

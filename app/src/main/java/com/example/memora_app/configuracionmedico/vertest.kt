@@ -16,6 +16,8 @@ import com.example.memora_app.inicio_cuidador_activity
 import com.example.memora_app.inicio_medico_activity
 import com.example.memora_app.inicio_paciente_activity
 import com.example.memora_app.pruebas.MMSEActivity
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.analytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -38,11 +40,11 @@ class vertest : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_pruebas)
 
-        // Configurar Toolbar
+
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        // Opcional: Mostrar botón de volver atrás (si lo necesitas)
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
@@ -53,10 +55,10 @@ class vertest : AppCompatActivity() {
 
         usuarioId = FirebaseAuth.getInstance().currentUser?.email ?: return
 
-        // Verificar tipo de usuario
+
         verificarRolUsuario()
 
-        // Filtrar pruebas en tiempo real
+
         buscarPruebasEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -67,7 +69,7 @@ class vertest : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
-        // Médico solicita una nueva prueba
+
         btnSolicitarPrueba.setOnClickListener {
             db.collection("Pacientes").document(pacienteId)
                 .update("pruebaSolicitada", true)
@@ -77,9 +79,12 @@ class vertest : AppCompatActivity() {
                 .addOnFailureListener {
                     Toast.makeText(this, "Error al solicitar la prueba", Toast.LENGTH_SHORT).show()
                 }
+
+
+
         }
 
-        // Paciente realiza la prueba
+
         btnRealizarPrueba.setOnClickListener {
             startActivity(Intent(this, MMSEActivity::class.java).apply {
                 putExtra("PACIENTE_ID", pacienteId)

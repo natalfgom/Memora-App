@@ -528,5 +528,13 @@
         <item>Abajo</item>
     </string-array>
 
+    <string-array name="tipos_estadistica">
+        <item>Selecciona...</item>
+        <item>Memoria</item>
+        <item>Comprensión</item>
+        <item>Cálculo</item>
+        <item>Orientación</item>
+    </string-array>
+
 
 </resources>

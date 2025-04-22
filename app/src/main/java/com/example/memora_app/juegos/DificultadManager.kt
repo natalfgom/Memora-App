@@ -110,67 +110,7 @@ object DificultadManager {
         }
     }
 
-    fun comprobarYActualizarDesdeMMSE(pacienteId: String) {
-        val pacienteRef = db.collection("Pacientes").document(pacienteId)
-        val dificultadesRef = pacienteRef.collection("Dificultades")
-        val actualRef = dificultadesRef.document("Actual")
-        val hoy = LocalDate.now().toString()
-        val hoyRef = dificultadesRef.document(hoy)
 
-        actualRef.get().addOnSuccessListener { docActual ->
-            if (docActual.exists()) {
-                val fechaUltima = docActual.get("fechaUltimaActualizacion") as? Timestamp
-                if (fechaUltima != null && !hanPasado7Dias(fechaUltima)) {
-                    Log.d("DificultadManager", "❌ No se actualiza porque no han pasado 7 días desde la última actualización.")
-                    return@addOnSuccessListener
-                }
-                Log.d("DificultadManager", "✅ Han pasado al menos 7 días. Se procede a actualizar.")
-            }
-
-            // (Resto del código igual: actualiza normalmente)
-            val pruebasRef = pacienteRef.collection("Pruebas")
-            pruebasRef.get().addOnSuccessListener { result ->
-                val documentos = result.documents
-                Log.d("DificultadManager", "Se encontraron ${documentos.size} documentos de prueba.")
-
-                val pruebaReciente = documentos
-                    .filter { it.contains("Fecha") }
-                    .sortedByDescending { it.getString("Fecha") }
-                    .firstOrNull()
-
-                val fuente = pruebaReciente
-                val data = fuente?.data as? Map<String, Any>
-
-                val dificultades = if (data != null) {
-                    mapOf(
-                        "Comprensión" to mapOf("Dificultad" to getValorDificultad(data, "Comprensión"), "Puntaje" to getValorPuntaje(data, "Comprensión")),
-                        "Cálculo" to mapOf("Dificultad" to getValorDificultad(data, "Cálculo"), "Puntaje" to getValorPuntaje(data, "Cálculo")),
-                        "Memoria" to mapOf("Dificultad" to getValorDificultad(data, "Memoria"), "Puntaje" to getValorPuntaje(data, "Memoria")),
-                        "Orientación" to mapOf("Dificultad" to getValorDificultad(data, "Orientación"), "Puntaje" to getValorPuntaje(data, "Orientación")),
-                        "fechaUltimaActualizacion" to Timestamp.now(),
-                        "MMSE_usado" to fuente?.id.orEmpty()
-                    )
-                } else {
-                    mapOf(
-                        "Comprensión" to mapOf("Dificultad" to "Dificultad Media", "Puntaje" to 0),
-                        "Cálculo" to mapOf("Dificultad" to "Dificultad Media", "Puntaje" to 0),
-                        "Memoria" to mapOf("Dificultad" to "Dificultad Media", "Puntaje" to 0),
-                        "Orientación" to mapOf("Dificultad" to "Dificultad Media", "Puntaje" to 0),
-                        "fechaUltimaActualizacion" to Timestamp.now(),
-                        "MMSE_usado" to ""
-                    )
-                }
-
-                actualRef.set(dificultades)
-                hoyRef.get().addOnSuccessListener { docHoy ->
-                    if (!docHoy.exists()) {
-                        hoyRef.set(dificultades)
-                        Log.d("DificultadManager", "Historial de dificultades guardado para '$hoy'.")
-                    }
-                }
-            }
-        }
-    }
 
     fun resultadosActualizar(pacienteId: String) {
         val pacienteRef = db.collection("Pacientes").document(pacienteId)
@@ -235,11 +175,11 @@ object DificultadManager {
                 )
             }
 
-            // 1. Actualiza siempre el documento "Actual"
+
             actualRef.set(dificultades)
             Log.d("DificultadManager", "Documento 'Actual' actualizado correctamente.")
 
-            // 2. Solo crea el documento del día si no existe
+
             hoyRef.get().addOnSuccessListener { docHoy ->
                 if (!docHoy.exists()) {
                     hoyRef.set(dificultades)
@@ -270,24 +210,24 @@ object DificultadManager {
             val yaActualizadoHoy = fechaUltima == hoy
             val haPasadoTiempo = timestampUltima == null || hanPasado7Dias(timestampUltima)
 
-            Log.d("DificultadManager", "📅 Fecha anterior: $fechaUltima")
-            Log.d("DificultadManager", "📅 Fecha actual: $hoy")
-            Log.d("DificultadManager", "📊 Ya actualizado hoy: $yaActualizadoHoy")
-            Log.d("DificultadManager", "📊 Han pasado $dias días: $haPasadoTiempo")
+            Log.d("DificultadManager", "Fecha anterior: $fechaUltima")
+            Log.d("DificultadManager", "Fecha actual: $hoy")
+            Log.d("DificultadManager", "Ya actualizado hoy: $yaActualizadoHoy")
+            Log.d("DificultadManager", "Han pasado $dias días: $haPasadoTiempo")
 
             if (!forzar) {
                 if (yaActualizadoHoy) {
-                    Log.d("DificultadManager", "❌ Ya se actualizó hoy. No se vuelve a actualizar.")
+                    Log.d("DificultadManager", "Ya se actualizó hoy. No se vuelve a actualizar.")
                     return@addOnSuccessListener
                 }
 
                 if (!haPasadoTiempo) {
-                    Log.d("DificultadManager", "❌ No han pasado $dias días. No se actualiza.")
+                    Log.d("DificultadManager", "No han pasado $dias días. No se actualiza.")
                     return@addOnSuccessListener
                 }
             }
 
-            Log.d("DificultadManager", "✅ Se procede a actualizar (forzar = $forzar, días = $dias)")
+            Log.d("DificultadManager", "Se procede a actualizar (forzar = $forzar, días = $dias)")
 
             val categorias = listOf("Comprensión", "Cálculo", "Memoria", "Orientación")
             val fechas = (0 until dias).map { LocalDate.now().minusDays(it.toLong()).toString() }
@@ -356,16 +296,7 @@ object DificultadManager {
 
 
 
-    fun obtenerDificultadActual(pacienteId: String, categoria: String, callback: (String) -> Unit) {
-        db.collection("Pacientes").document(pacienteId)
-            .collection("Dificultades").document("Actual")
-            .get().addOnSuccessListener { doc ->
-                val dificultad = (doc.get(categoria) as? Map<*, *>)?.get("Dificultad") as? String
-                callback(dificultad ?: "Dificultad Media")
-            }.addOnFailureListener {
-                callback("Dificultad Media")
-            }
-    }
+
 
     private fun getValorDificultad(data: Map<String, Any>?, categoria: String): String {
         val submap = data?.get(categoria) as? Map<*, *>
@@ -383,9 +314,9 @@ object DificultadManager {
         val fechaHoy = LocalDate.now(zona)
         val dias = ChronoUnit.DAYS.between(fechaAnterior, fechaHoy)
 
-        Log.d("DificultadManager", "📅 Fecha anterior: $fechaAnterior")
-        Log.d("DificultadManager", "📅 Fecha actual: $fechaHoy")
-        Log.d("DificultadManager", "📊 Días transcurridos: $dias")
+        Log.d("DificultadManager", "Fecha anterior: $fechaAnterior")
+        Log.d("DificultadManager", "Fecha actual: $fechaHoy")
+        Log.d("DificultadManager", "Días transcurridos: $dias")
 
         return dias >= 7
     }

@@ -75,11 +75,11 @@ class InformacionpersonalActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        // Configurar Toolbar
+
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        // Opcional: Mostrar botón de volver atrás (si lo necesitas)
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
@@ -142,7 +142,7 @@ class InformacionpersonalActivity : AppCompatActivity() {
                         etTelefono.setText(doc.getString("telefono"))
                         etdni.setText(doc.getString("dni"))
 
-                        // Guardamos el rol en SharedPreferences (por si lo necesitamos después)
+
                         val rol = doc.getString("rol") ?: ""
                         val prefs = getSharedPreferences("PREFS_MEMORA", MODE_PRIVATE)
                         prefs.edit().putString("rol", rol).apply()

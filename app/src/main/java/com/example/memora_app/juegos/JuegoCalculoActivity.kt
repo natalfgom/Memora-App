@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.memora_app.R
 import com.example.memora_app.modelos.Pregunta
 import com.example.memora_app.modelos.PreguntasCal
-import com.example.memora_app.modelos.PreguntasData
 import com.google.firebase.firestore.FirebaseFirestore
 import java.time.LocalDate
 
@@ -26,7 +25,7 @@ class JuegoCalculoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.juego_comprension) // ¡Usamos el mismo layout!
+        setContentView(R.layout.juego_comprension)
 
         pacienteId = intent.getStringExtra("pacienteId") ?: return
         val dificultadRecibida = intent.getStringExtra("dificultad")?.trim()

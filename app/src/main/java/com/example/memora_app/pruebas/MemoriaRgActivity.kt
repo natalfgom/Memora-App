@@ -78,25 +78,25 @@ class MemoriaRgActivity : AppCompatActivity() {
 
             handler.postDelayed({
                 mostrarImagenesSecuencialmente(index + 1)
-            }, 3000) // Mostrar cada imagen por 3 segundos
+            }, 3000)
         } else {
             runOnUiThread { iniciarSeleccion() }
         }
     }
 
     private fun iniciarSeleccion() {
-        tvInstrucciones.text = getString(R.string.seleccione_imagenes) // Texto desde resources
+        tvInstrucciones.text = getString(R.string.seleccione_imagenes)
         imageView.visibility = View.GONE
         gridLayout.visibility = View.VISIBLE
         btnValidar.visibility = View.VISIBLE
         gridLayout.visibility = View.VISIBLE
-        contenedorGrid.visibility = View.VISIBLE // También si el FrameLayout lo contiene
+        contenedorGrid.visibility = View.VISIBLE
 
 
         gridLayout.removeAllViews()
-        gridLayout.columnCount = 2  // Mantener distribución en 3 columnas
+        gridLayout.columnCount = 2
 
-        val opciones = imagenes.shuffled() // Se muestran **todas** las imágenes en cada intento
+        val opciones = imagenes.shuffled()
 
         Handler(Looper.getMainLooper()).postDelayed({
             opciones.forEach { opcion ->
@@ -105,7 +105,7 @@ class MemoriaRgActivity : AppCompatActivity() {
                     layoutParams = GridLayout.LayoutParams().apply {
                         width = 300
                         height = 300
-                        setMargins(50, 20, 50, 20) // Espaciado uniforme
+                        setMargins(50, 20, 50, 20)
                     }
                     scaleType = ImageView.ScaleType.FIT_CENTER
                     adjustViewBounds = true
@@ -155,7 +155,7 @@ class MemoriaRgActivity : AppCompatActivity() {
             return
         }
 
-        // Obtener la fecha actual en formato "yyyy-MM-dd"
+
         val fechaActual = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
 
         val resultado = hashMapOf(
@@ -166,8 +166,8 @@ class MemoriaRgActivity : AppCompatActivity() {
         )
 
         db.collection("Pacientes").document(pacienteID)
-            .collection("Pruebas").document("Prueba inicial " + fechaActual) // Guardar los resultados con la fecha actual
-            .set(resultado, SetOptions.merge()) // Evita sobrescribir otros datos previos
+            .collection("Pruebas").document("Prueba inicial " + fechaActual)
+            .set(resultado, SetOptions.merge())
             .addOnSuccessListener {
                 Log.d("Firebase", "Resultado de memoria guardado con éxito en Firebase para la fecha $fechaActual")
             }

@@ -23,8 +23,6 @@ class ResultadosMMSERgActivity : AppCompatActivity() {
     private var puntuacionMemoria = 0
     private var puntuacionCalculo = 0
     private var puntuacionComprension = 0
-    private var puntuacionTotal = 0
-    private var clasificacionFinal = ""
     private var pacienteID: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +31,7 @@ class ResultadosMMSERgActivity : AppCompatActivity() {
 
         btnVolver = findViewById(R.id.btnVolver)
 
-        // Recibir el ID del paciente
+
         pacienteID = intent.getStringExtra("paciente_id") ?: ""
 
         obtenerResultados()
@@ -52,7 +50,7 @@ class ResultadosMMSERgActivity : AppCompatActivity() {
             return
         }
 
-        // Obtener la fecha actual
+
         val fechaActual = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
 
         db.collection("Pacientes").document(pacienteID)

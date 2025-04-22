@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
         val email = emailEditText.text.toString().trim()
         val password = passwordEditText.text.toString().trim()
 
-        // Limpiar errores antiguos
+
         emailEditText.error = null
         passwordEditText.error = null
 

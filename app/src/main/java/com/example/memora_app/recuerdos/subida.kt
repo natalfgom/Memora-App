@@ -38,32 +38,32 @@ class subida : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.subida_recuerdos)
 
-        // Configurar Toolbar
+
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        // Inicializar Firebase
+
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
 
-        // Inicializar vistas
+
         imageViewPreview = findViewById(R.id.imageViewPreview)
         btnSelectImage = findViewById(R.id.btnSelectImage)
         etDescription = findViewById(R.id.etDescription)
         btnUpload = findViewById(R.id.btnUpload)
 
-        // Obtener el DNI del paciente asociado al cuidador
+
         obtenerDniPaciente()
 
-        // Seleccionar imagen
+
         btnSelectImage.setOnClickListener {
             selectImageFromGallery()
         }
 
-        // Subir imagen y texto
+
         btnUpload.setOnClickListener {
             if (dniPaciente != null) {
                 crearSubcoleccionSiNoExiste(dniPaciente!!)
@@ -88,7 +88,7 @@ class subida : AppCompatActivity() {
         }
     }
 
-    // Obtener el DNI del paciente asociado al cuidador actual
+
     private fun obtenerDniPaciente() {
         val correo = auth.currentUser?.email ?: return
 
@@ -114,7 +114,7 @@ class subida : AppCompatActivity() {
             }
     }
 
-    // Crear la subcolección "Recuerdos" si no existe y luego subir la imagen
+
     private fun crearSubcoleccionSiNoExiste(dniPaciente: String) {
         val pacienteRef = db.collection("Pacientes").document(dniPaciente)
 
@@ -133,7 +133,7 @@ class subida : AppCompatActivity() {
         }
     }
 
-    // Método para subir la imagen a Imgur y guardar en Firestore
+
     private fun uploadImageToImgur(dniPaciente: String) {
         if (imageUri == null) {
             Toast.makeText(this, "Selecciona una imagen primero", Toast.LENGTH_SHORT).show()
@@ -169,7 +169,7 @@ class subida : AppCompatActivity() {
         Volley.newRequestQueue(this).add(request)
     }
 
-    // Guardar URL de la imagen y el texto en Firestore
+
     private fun saveDataToFirestore(dniPaciente: String, imageUrl: String, description: String) {
         val recuerdo = hashMapOf(
             "imageUrl" to imageUrl,

@@ -26,7 +26,7 @@ class DetallePruebaActivity : AppCompatActivity() {
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        // Opcional: Mostrar botón de volver atrás (si lo necesitas)
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
@@ -38,7 +38,7 @@ class DetallePruebaActivity : AppCompatActivity() {
         val tvPuntajeCalculo: TextView = findViewById(R.id.tvPuntajeCalculo)
         val tvPuntajeComprension: TextView = findViewById(R.id.tvPuntajeComprension)
 
-        // Obtener los detalles de la prueba
+
         val pruebaRef = db.collection("Pacientes").document(pacienteId)
             .collection("Pruebas").document(pruebaId)
 
