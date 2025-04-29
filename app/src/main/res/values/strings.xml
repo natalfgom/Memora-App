@@ -428,7 +428,7 @@
         <item>Seleccione una respuesta</item>
         <item>No</item>
         <item>Sí</item>
-        <item>No sé</item>
+        <item>No aplica</item>
     </string-array>
 
     <string-array name="cdrsb_q17_options">
