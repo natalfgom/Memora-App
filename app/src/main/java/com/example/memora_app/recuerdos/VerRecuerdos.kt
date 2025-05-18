@@ -2,6 +2,7 @@ package com.example.memora_app.recuerdos
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
@@ -76,10 +77,15 @@ class VerRecuerdos : AppCompatActivity() {
     }
 
     private fun cargarRecuerdoAleatorio(dniPaciente: String) {
+        val start = System.currentTimeMillis()
+
         db.collection("Pacientes").document(dniPaciente)
             .collection("Recuerdos")
             .get()
             .addOnSuccessListener { documentos ->
+                val end = System.currentTimeMillis()
+                Log.d("PERF", "Tiempo en cargar recuerdos desde Firestore: ${end - start} ms")
+
                 if (!documentos.isEmpty) {
 
                     val recuerdoAleatorio = documentos.documents[Random.nextInt(documentos.size())]

@@ -54,6 +54,7 @@ class inicio_cuidador_activity : AppCompatActivity() {
 
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
+
         }
 
 // Escuchar si hay solicitud de prueba CDR para el cuidador
@@ -63,7 +64,7 @@ class inicio_cuidador_activity : AppCompatActivity() {
             FirebaseFirestore.getInstance().collection("Cuidadores").get()
                 .addOnSuccessListener { documentos ->
                     for (doc in documentos) {
-                        val correo = doc.getString("correo")
+                        val correo = doc.getString("correo")?.trim('\"')
                         if (correo == correoUsuario) {
                             val dniCuidador = doc.getString("dni")
                             if (dniCuidador != null) {
@@ -93,7 +94,7 @@ class inicio_cuidador_activity : AppCompatActivity() {
                                             val builder = NotificationCompat.Builder(this, "canal_cuidador")
                                                 .setSmallIcon(R.drawable.pruebas)
                                                 .setContentTitle("Nueva prueba CDR disponible")
-                                                .setContentText("Hay una nueva prueba CDR disponible para uno de tus pacientes.")
+                                                .setContentText("Hay una nueva prueba CDR disponible.")
                                                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                                                 .setContentIntent(pendingIntent)
                                                 .setAutoCancel(true)

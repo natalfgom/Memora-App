@@ -32,6 +32,9 @@ class JuegoMemoriaActivity : AppCompatActivity() {
     private val respuestasSeleccionadas = mutableSetOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val start = System.currentTimeMillis()
+
+        setContentView(R.layout.activity_memoria)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.juego_memoria_unico)
 
@@ -101,6 +104,9 @@ class JuegoMemoriaActivity : AppCompatActivity() {
                 }
             }
         }
+
+        val end = System.currentTimeMillis()
+        Log.d("PERF", "Setup de MemoriaActivity en ${end - start} ms")
 
     }
 

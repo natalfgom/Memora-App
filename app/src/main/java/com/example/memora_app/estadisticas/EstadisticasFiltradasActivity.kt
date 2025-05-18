@@ -135,6 +135,7 @@ class EstadisticasFiltradasActivity : AppCompatActivity() {
                     val dificultad = (doc.get(area) as? Map<*, *>)?.get("Dificultad") as? String ?: continue
                     dificultades[doc.id] = dificultad
                 }
+                val startStats = System.currentTimeMillis()
 
                 db.collection("Pacientes").document(pacienteId)
                     .collection("Juegos").document(area)
@@ -183,14 +184,19 @@ class EstadisticasFiltradasActivity : AppCompatActivity() {
                         chartPuntuaciones.invalidate()
 
                         Log.d("Estadisticas", "Gráfica generada con ${entradas.size} puntos.")
+
+                        val endStats = System.currentTimeMillis()
+                        Log.d("PERF", "Carga de estadísticas de '$area' completada en ${endStats - startStats} ms")
                     }
                     .addOnFailureListener {
                         Log.e("Estadisticas", "Error obteniendo puntuaciones: ${it.message}")
                     }
+
             }
             .addOnFailureListener {
                 Log.e("Estadisticas", "Error obteniendo dificultades: ${it.message}")
             }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

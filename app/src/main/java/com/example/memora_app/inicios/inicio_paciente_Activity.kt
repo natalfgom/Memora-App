@@ -42,7 +42,7 @@ class inicio_paciente_activity : AppCompatActivity() {
 
         Log.d("InicioPaciente", "Actividad iniciada")
 
-        // Crear canal de notificaciones (una sola vez)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 "canal_paciente",
@@ -56,7 +56,7 @@ class inicio_paciente_activity : AppCompatActivity() {
             notificationManager.createNotificationChannel(channel)
         }
 
-        // Obtener token de FCM (opcional)
+
         FirebaseMessaging.getInstance().token
             .addOnCompleteListener { task ->
                 if (!task.isSuccessful) {
@@ -68,14 +68,18 @@ class inicio_paciente_activity : AppCompatActivity() {
                 Log.d("FCM", "Token: $token")
             }
 
-        // Detectar si hay solicitud de prueba activa
+
         val correoUsuario = FirebaseAuth.getInstance().currentUser?.email
 
         if (correoUsuario != null) {
+            val start = System.currentTimeMillis()  // ⬅️ Empieza a medir tiempo
             FirebaseFirestore.getInstance().collection("Pacientes").get()
                 .addOnSuccessListener { documentos ->
+                    val end = System.currentTimeMillis()  // ⬅️ Fin de la medición
+                    Log.d("PERF", "Tiempo en obtener pacientes: ${end - start} ms")
+
                     for (doc in documentos) {
-                        val correo = doc.getString("correo")
+                        val correo = doc.getString("correo")?.trim('\"')
                         if (correo == correoUsuario) {
                             val dniPaciente = doc.getString("dni")
                             if (dniPaciente != null) {
@@ -126,7 +130,7 @@ class inicio_paciente_activity : AppCompatActivity() {
                 }
         }
 
-        // Toolbar y botones
+
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 

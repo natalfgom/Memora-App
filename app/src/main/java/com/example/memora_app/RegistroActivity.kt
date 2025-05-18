@@ -73,7 +73,7 @@ class RegistroActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {  // Esta es la flecha
+        if (item.itemId == android.R.id.home) {
             finish()
             return true
         }
@@ -299,7 +299,12 @@ class RegistroActivity : AppCompatActivity() {
             val datos = recogerDatosComunes()
 
             when (spinnerRol.selectedItem.toString()) {
-                "Médico" -> guardarDatosEnFirestore(db, "Medicos", dni, datos, correo, password)
+                "Médico" -> {
+                    val idMedico = findViewById<EditText>(R.id.etIdMedico).text.toString()
+                    datos["idMedico"] = idMedico 
+                    guardarDatosEnFirestore(db, "Medicos", idMedico, datos, correo, password)
+                }
+
                 "Paciente" -> {
                     val idMedico = findViewById<EditText>(R.id.etVincularMedico).text.toString()
                     verificarExistencia(db, "Medicos", idMedico) { existe ->

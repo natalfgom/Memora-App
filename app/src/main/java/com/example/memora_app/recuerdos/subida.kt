@@ -17,6 +17,7 @@ import com.example.memora_app.inicio_paciente_activity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import android.util.Base64
+import android.util.Log
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -145,28 +146,37 @@ class subida : AppCompatActivity() {
         val base64Image = Base64.encodeToString(bytes, Base64.NO_WRAP)
 
         val url = "https://api.imgur.com/3/image"
+
         val requestBody = JSONObject().apply {
             put("image", base64Image)
         }
 
+        val startUpload = System.currentTimeMillis()
+
         val request = object : JsonObjectRequest(
             Request.Method.POST, url, requestBody,
             { response ->
+                val endUpload = System.currentTimeMillis()
+                Log.d("PERF", "Subida a Imgur completada en ${endUpload - startUpload} ms")
+
                 val imageUrl = response.getJSONObject("data").getString("link")
                 saveDataToFirestore(dniPaciente, imageUrl, etDescription.text.toString())
             },
             { error ->
+                val endUpload = System.currentTimeMillis()
+                Log.e("PERF", "Fallo en subida a Imgur tras ${endUpload - startUpload} ms")
                 Toast.makeText(this, "Error al subir a Imgur: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
-                headers["Authorization"] = "Client-ID 2e998cdfcee39a6" // Reemplaza TU_CLIENT_ID con tu ID real
+                headers["Authorization"] = "Client-ID 2e998cdfcee39a6"
                 return headers
             }
         }
 
         Volley.newRequestQueue(this).add(request)
+
     }
 
 
